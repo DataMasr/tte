@@ -3,16 +3,22 @@
 // ==============================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Core Interactive Suite (Executes Immediately)
     initAreaDropdowns();
     initBookingForm();
     initFaqAccordion();
     initContactLinks();
-    initScrollReveal();
-    initAnimatedCounters();
-    initInteractiveTilt();
-    initCursorSpotlight();
     initFleetShowcaseTabs();
     initCopyVoucherCode();
+
+    // 2. Secondary Visual & Physics FX (Deferred to Idle Callback for 0ms Total Blocking Time)
+    const runIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 80));
+    runIdle(() => {
+        initScrollReveal();
+        initAnimatedCounters();
+        initInteractiveTilt();
+        initCursorSpotlight();
+    });
 });
 
 // تهيئة القوائم المنسدلة للمناطق

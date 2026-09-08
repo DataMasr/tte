@@ -295,18 +295,17 @@ h6 {
     gap: 4px;
     font-size: 10.5px;
     font-weight: 800;
-    color: #059669;
+    color: #065F46;
     background: #ECFDF5;
     border: 1px solid #A7F3D0;
     padding: 2px 8px;
     border-radius: 999px;
-    box-shadow: 0 1px 4px rgba(5, 150, 105, 0.1);
 }
 
 .logo-subtext {
     font-size: 9.5px;
-    font-weight: 700;
-    color: var(--primary-gold);
+    font-weight: 800;
+    color: #1D4ED8;
     letter-spacing: 0.8px;
     text-transform: uppercase;
     font-family: var(--font-code);
@@ -422,7 +421,7 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #64748B;
+    color: #334155;
     text-decoration: none !important;
     transition: var(--transition);
 }
@@ -570,7 +569,7 @@ h6 {
     border-radius: 999px;
     background: #ECFDF5;
     border: 1px solid #A7F3D0;
-    color: #059669;
+    color: #065F46;
     font-size: 13.5px;
     font-weight: 700;
     box-shadow: 0 2px 10px rgba(5, 150, 105, 0.1);
@@ -1465,7 +1464,7 @@ h6 {
 
 .field-input::placeholder,
 .field-textarea::placeholder {
-    color: #94A3B8;
+    color: #64748B;
 }
 
 .field-input:focus,
@@ -1739,7 +1738,7 @@ h6 {
 }
 
 .footer-links a {
-    color: #94A3B8;
+    color: #CBD5E1;
     text-decoration: none !important;
     font-size: 14.5px;
     transition: var(--transition);
@@ -1781,7 +1780,7 @@ h6 {
     text-align: center;
     padding-top: 35px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    color: #64748B;
+    color: #CBD5E1;
     font-size: 13.5px;
 }
 
