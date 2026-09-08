@@ -216,7 +216,7 @@ function initFleetShowcaseTabs() {
 
     const data = {
         winch: {
-            img: "assets/hero-lift.jpg",
+            img: "assets/hero-lift.webp",
             badge: "جاهزية تشغيل فورية",
             tag: "أحدث جيل هيدروليكي ألماني",
             title: "أوناش هيدروليكية عملاقة تصل حتى الدور 25",
@@ -227,7 +227,7 @@ function initFleetShowcaseTabs() {
             s4: "توفير 70% من وقت النقل"
         },
         trucks: {
-            img: "assets/fleet.jpg",
+            img: "assets/fleet.webp",
             badge: "أسطول مغلق مصفح ومبطن",
             tag: "شاحنات مصممة لحماية الفلل والشركات",
             title: "شاحنات الصندوق المقفل المعزول ضد الأتربة والأمطار",
@@ -238,7 +238,7 @@ function initFleetShowcaseTabs() {
             s4: "تعقيم دوري ضد الحشرات"
         },
         packaging: {
-            img: "assets/packing.jpg",
+            img: "assets/packing.webp",
             badge: "خامات تغليف فندقية معتمدة",
             tag: "أعلى معايير الحماية الأوروبية",
             title: "تغليف فندقي خماسي الطبقات مع ترقيم الصناديق",
@@ -249,7 +249,7 @@ function initFleetShowcaseTabs() {
             s4: "باركود وترقيم لتسهيل الفرز"
         },
         crew: {
-            img: "assets/packing.jpg",
+            img: "assets/packing.webp",
             badge: "كادر فني معتمد بخبرة +12 عاماً",
             tag: "مهندسون وفنيو فك وتركيب محترفون",
             title: "فنيون معتمدون لفك وتركيب الغرف المعقدة والتكييف",

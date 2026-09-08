@@ -2,9 +2,6 @@
    Na2la Pro - Enterprise Admin Dashboard Stylesheet
    Corporate Security | Supabase Authentication Gate | SVG Icons
    ============================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap');
-
 :root {
     --bg-admin-base: #05070e;
     --bg-admin-card: rgba(12, 17, 32, 0.85);

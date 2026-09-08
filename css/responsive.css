@@ -327,7 +327,8 @@
         overflow: hidden;
     }
 
-    .hero-media-card img {
+    .hero-media-card img,
+    .hero-media-card picture img {
         height: 250px;
         width: 100%;
         object-fit: cover;
