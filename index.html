@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAQLX | نَقْلِكس - المنظومة الهندسية لنقل وتأمين الأثاث والرفع الهيدروليكي</title>
+    <meta name="description"
+        content="المنظومة الرائدة في جمهورية مصر العربية لنقل وتأمين الأثاث المنزلي والمكتبي، شاحنات مجهزة ومبطنة، أوناش هيدروليكية معتمدة حتى الدور 25، وفك وتركيب بأيدي نجارين وفنيين متخصصين.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- Corporate Architectural Backdrop -->
+    <div class="ambient-scene" aria-hidden="true"></div>
+
+    <!-- ==========================================
+         Executive Floating Navigation Bar
+         ========================================== -->
+    <header class="main-nav-wrapper">
+        <div class="nav-container">
+            <!-- Brand -->
+            <a href="#" class="brand-logo">
+                <div class="logo-symbol">
+                    <!-- SVG Heavy Logistics Truck -->
+                    <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                        <path d="M10 17h4V5H2v12h3m9 0h2.5a2.5 2.5 0 0 0 2.5-2.5V11l-3-4h-2v10z"></path>
+                        <circle cx="7.5" cy="17.5" r="2.5"></circle>
+                        <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                    </svg>
+                </div>
+                <div class="logo-details">
+                    <div class="logo-name-row">
+                        <span class="logo-name">NAQLX <span class="text-gold"></span></span>
+                        <span class="logo-verified-badge">
+                            <svg class="svg-icon" viewBox="0 0 24 24" style="width:10px; height:10px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>معتمدة</span>
+                        </span>
+                    </div>
+                    <span class="logo-subtext">ENTERPRISE LOGISTICS SYSTEM</span>
+                </div>
+            </a>
+
+            <!-- Nav Capsule (Desktop) -->
+            <nav class="nav-capsule">
+                <ul class="nav-menu">
+                    <li><a href="#services">الخدمات المعتمدة</a></li>
+                    <li><a href="#process">مراحل التنفيذ</a></li>
+                    <li><a href="#coverage">نطاق التغطية</a></li>
+                    <li><a href="#guarantee">معايير الأمان</a></li>
+                    <li><a href="#faq">الأسئلة الشائعة</a></li>
+                </ul>
+            </nav>
+
+            <!-- Nav Action Suite -->
+            <div class="nav-cta-group">
+                <a href="tel:01007245515" class="btn-nav-call" title="اتصال مباشر بالخط الساخن">
+                    <div class="pulse-indicator"></div>
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    <span class="nav-call-number">01007245515</span>
+                </a>
+
+                <a href="#booking" class="btn-nav-book">
+                    <span>طلب نقل فوري</span>
+                    <svg class="svg-icon" viewBox="0 0 24 24" style="width:14px; height:14px;">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </a>
+
+                <a href="admin.html" class="btn-nav-admin" title="بوابة إدارة العمليات">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </a>
+
+                <!-- Mobile Toggle -->
+                <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="فتح القائمة">
+                    <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div class="nav-mobile-drawer" id="navMobileDrawer">
+            <ul class="nav-mobile-menu">
+                <li><a href="#services">الخدمات المعتمدة</a></li>
+                <li><a href="#process">مراحل التنفيذ</a></li>
+                <li><a href="#coverage">نطاق التغطية</a></li>
+                <li><a href="#guarantee">معايير الأمان</a></li>
+                <li><a href="#booking">طلب نقل فوري</a></li>
+                <li><a href="#faq">الأسئلة الشائعة</a></li>
+            </ul>
+            <div class="nav-mobile-actions">
+                <a href="tel:01007245515" class="btn btn-primary" style="width: 100%;">اتصال: 01007245515</a>
+                <a href="https://wa.me/201006672783" target="_blank" class="btn btn-whatsapp"
+                    style="width: 100%;">واتساب: 01006672783</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         Hero Section (Corporate Authority)
+         ========================================== -->
+    <section class="hero-section">
+        <div class="container hero-layout">
+            <div class="hero-main">
+                <div class="status-pill">
+                    <span class="pulse-indicator"></span>
+                    <span>جاهزية لوجستية فورية لكافة العمليات 24/7</span>
+                </div>
+
+                <h1 class="hero-headline">
+                    الشركة الهندسية الرائدة <br>
+                    <span class="text-gold">لنقل وتأمين الأثاث والرفع الهيدروليكي</span>
+                </h1>
+
+                <p class="hero-subhead">
+                    نقدم معايير نقل احترافية متكاملة للمنازل والشركات: أسطول شاحنات مصفحة ومبطنة، أوناش هيدروليكية
+                    معتمدة للأدوار حتى الـ 25، حلول تغليف خماسية الطبقات، وفك وتركيب بمعرفة مهندسين وفنيين متخصصين مع
+                    وثيقة تأمين شاملة.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#booking" class="btn btn-primary">
+                        <span>احجز نقلتك الآن (معاينة فورية)</span>
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/201006672783" target="_blank" class="btn btn-whatsapp link-whatsapp">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                            </path>
+                        </svg>
+                        <span>واتساب VIP المباشر</span>
+                    </a>
+                    <a href="tel:01007245515" class="btn-hotline">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        <span>01007245515 (خط ساخن 24/7)</span>
+                    </a>
+                </div>
+
+                <div class="luxury-kpi-grid">
+                    <div class="luxury-kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">إجمالي العمليات الناجحة</span>
+                            <div class="kpi-icon">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value" data-counter="15000" data-prefix="+" data-suffix="">+15,000</div>
+                    </div>
+                    <div class="luxury-kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">نسبة الحوادث والتلف</span>
+                            <div class="kpi-icon">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value">0%</div>
+                    </div>
+                    <div class="luxury-kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">أقصى طابق للونش</span>
+                            <div class="kpi-icon">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value" data-counter="25" data-suffix="">25</div>
+                    </div>
+                    <div class="luxury-kpi-card">
+                        <div class="kpi-head">
+                            <span class="kpi-label">وثيقة تأمين وضمان</span>
+                            <div class="kpi-icon">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value" data-counter="100" data-suffix="%">100%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-stage">
+                <div class="hero-media-card">
+                    <img src="assets/hero-lift.jpg" alt="ونش هيدروليكي لنقل الأثاث في القاهرة والتجمع">
+                    <div class="hologram-badge-bottom">
+                        <div class="cert-icon">
+                            <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div class="cert-info">
+                            <h4>وثيقة تأمين شاملة 100% معتمدة</h4>
+                            <p>أوناش هيدروليكية حديثة وشاحنات مبطنة بالكامل لحماية المنقولات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         Corporate Trust Marquee (Live Moving Ticker)
+         ========================================== -->
+    <div class="marquee-wrapper" aria-hidden="true">
+        <div class="marquee-track">
+            <div class="marquee-group">
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M10 17h4V5H2v12h3m9 0h2.5a2.5 2.5 0 0 0 2.5-2.5V11l-3-4h-2v10z"></path>
+                        <circle cx="7.5" cy="17.5" r="2.5"></circle>
+                        <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                    </svg>
+                    <span>أسطول شاحنات مغلقة مجهزة بنظام تتبع GPS</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    <span>أوناش هيدروليكية معتمدة للأدوار حتى الدور 25</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span>وثيقة تأمين وضمان شامل 100% ضد الكسر والخدش</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                        <rect x="1" y="3" width="22" height="5"></rect>
+                        <line x1="10" y1="12" x2="14" y2="12"></line>
+                    </svg>
+                    <span>تغليف فندقي خماسي الطبقات بأحدث خامات البابلز</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                    </svg>
+                    <span>تقييم 4.9/5 نجوم من أكثر من 15,000 عميل</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>جاهزية لوجستية فورية 24/7 بالقاهرة والمحافظات</span>
+                </div>
+                <div class="marquee-separator">•</div>
+            </div>
+            <!-- Duplicate for seamless infinite loop -->
+            <div class="marquee-group" aria-hidden="true">
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M10 17h4V5H2v12h3m9 0h2.5a2.5 2.5 0 0 0 2.5-2.5V11l-3-4h-2v10z"></path>
+                        <circle cx="7.5" cy="17.5" r="2.5"></circle>
+                        <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                    </svg>
+                    <span>أسطول شاحنات مغلقة مجهزة بنظام تتبع GPS</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    <span>أوناش هيدروليكية معتمدة للأدوار حتى الدور 25</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span>وثيقة تأمين وضمان شامل 100% ضد الكسر والخدش</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                        <rect x="1" y="3" width="22" height="5"></rect>
+                        <line x1="10" y1="12" x2="14" y2="12"></line>
+                    </svg>
+                    <span>تغليف فندقي خماسي الطبقات بأحدث خامات البابلز</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                        </polygon>
+                    </svg>
+                    <span>تقييم 4.9/5 نجوم من أكثر من 15,000 عميل</span>
+                </div>
+                <div class="marquee-separator">•</div>
+                <div class="marquee-item">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>جاهزية لوجستية فورية 24/7 بالقاهرة والمحافظات</span>
+                </div>
+                <div class="marquee-separator">•</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         Process & Engineering Standards Section
+         ========================================== -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-tagline">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>معايير التشغيل القياسية</span>
+                </div>
+                <h2 class="section-title">مراحل تنفيذ النقل <span class="text-gold">الهندسي المعتمد</span></h2>
+                <p class="section-caption">نتبع منهجية تشغيل دقيقة تضمن سلامة أثاثك وأجهزتك الحساسة من أول دقيقة حتى
+                    تمام الاستلام في موقعك الجديد.</p>
+            </div>
+
+            <div class="process-grid">
+                <!-- Step 1 -->
+                <div class="process-card">
+                    <span class="process-step-num">المرحلة 01</span>
+                    <div class="process-icon-box">
+                        <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">المعاينة وتحديد الخطة</h3>
+                    <p class="process-desc">دراسة حجم الأثاث، قياس المداخل والواجهات، وتحديد الشاحنات ونوع الونش المطلوب
+                        لتوفير الوقت والتكلفة.</p>
+                    <span class="process-time-tag">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        معاينة فورية خلال 30 دقيقة
+                    </span>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="process-card">
+                    <span class="process-step-num">المرحلة 02</span>
+                    <div class="process-icon-box">
+                        <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                            <path
+                                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">الفك الهندسي والتغليف</h3>
+                    <p class="process-desc">فك الغرف والمطابخ بأيدي نجارين معتمدين، وتغليف كل قطعة بالبابلز والكرتون
+                        خماسي الطبقات مع ترقيم الصناديق.</p>
+                    <span class="process-time-tag">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        خامات فندقية 5 طبقات
+                    </span>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-card">
+                    <span class="process-step-num">المرحلة 03</span>
+                    <div class="process-icon-box">
+                        <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">الرفع بالونش والنقل</h3>
+                    <p class="process-desc">استخدام الأوناش الهيدروليكية للأدوار المرتفعة، ورص المنقولات بعناية داخل
+                        شاحنات مبطنة ضد الاهتزازات.</p>
+                    <span class="process-time-tag">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                        ونش ألماني حتى الدور 25
+                    </span>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="process-card">
+                    <span class="process-step-num">المرحلة 04</span>
+                    <div class="process-icon-box">
+                        <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">إعادة التركيب والتسليم</h3>
+                    <p class="process-desc">تركيب كافة الغرف والستائر وضبط الأجهزة، وفحص شامل مع العميل قبل توقيع محضر
+                        الاستلام النهائي.</p>
+                    <span class="process-time-tag">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        تسليم بمحضر فحص وضمان
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         Services Showcase Section
+         ========================================== -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-tagline">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>قدراتنا اللوجستية</span>
+                </div>
+                <h2 class="section-title">حلول نقل متكاملة <span class="text-gold">بأحدث التجهيزات</span></h2>
+                <p class="section-caption">معدات مصممة للتعامل مع أرقى وأدق قطع الأثاث الكلاسيكي والمودرن والمعدات
+                    الإدارية.</p>
+            </div>
+
+            <!-- Interactive Fleet Showcase Stage -->
+            <div class="fleet-tabs-nav" id="fleetTabs">
+                <button type="button" class="fleet-tab-btn active" data-fleet-target="winch">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    <span>أوناش هيدروليكية 25 دور</span>
+                </button>
+                <button type="button" class="fleet-tab-btn" data-fleet-target="trucks">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M10 17h4V5H2v12h3m9 0h2.5a2.5 2.5 0 0 0 2.5-2.5V11l-3-4h-2v10z"></path>
+                        <circle cx="7.5" cy="17.5" r="2.5"></circle>
+                        <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                    </svg>
+                    <span>شاحنات جامبو معزولة</span>
+                </button>
+                <button type="button" class="fleet-tab-btn" data-fleet-target="packaging">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                        <rect x="1" y="3" width="22" height="5"></rect>
+                        <line x1="10" y1="12" x2="14" y2="12"></line>
+                    </svg>
+                    <span>تغليف فندقي 5 طبقات</span>
+                </button>
+                <button type="button" class="fleet-tab-btn" data-fleet-target="crew">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+                        </path>
+                    </svg>
+                    <span>نجارون وفنيو تكييف</span>
+                </button>
+            </div>
+
+            <div class="fleet-stage-panel" id="fleetStagePanel" style="margin-bottom: 40px;">
+                <div class="fleet-media-wrap">
+                    <img id="fleetDisplayImg" src="assets/hero-lift.jpg" alt="تجهيزات أسطول NAQLX | نَقْلِكس">
+                    <div class="fleet-spec-badge" id="fleetSpecBadge">
+                        <svg class="svg-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span id="fleetBadgeText">جاهزية تشغيل فورية</span>
+                    </div>
+                </div>
+                <div class="fleet-info-wrap">
+                    <div class="section-tagline" style="margin-bottom: 0; width: fit-content;">
+                        <span id="fleetCategoryTag">أحدث جيل هيدروليكي ألماني</span>
+                    </div>
+                    <h3 class="fleet-info-title" id="fleetTitle">أوناش هيدروليكية عملاقة تصل حتى الدور 25</h3>
+                    <p class="fleet-info-desc" id="fleetDesc">
+                        أوناش مصفحة مخصصة للواجهات الضيقة والشوارع الحيوية، مزودة بحساسات أمان هيدروليكية وقواعد تثبيت
+                        فولاذية لمنع أي ميل أو احتكاك أثناء رفع وتنزيل أثمن المقتنيات.
+                    </p>
+                    <div class="fleet-specs-grid" id="fleetSpecsGrid">
+                        <div class="fleet-spec-item">
+                            <span class="fleet-spec-label">أقصى ارتفاع تشغيلي</span>
+                            <span class="fleet-spec-val" id="fleetSpec1">75 متر (25 طابق)</span>
+                        </div>
+                        <div class="fleet-spec-item">
+                            <span class="fleet-spec-label">الحمولة القصوى للمنصة</span>
+                            <span class="fleet-spec-val" id="fleetSpec2">450 كجم بالرحلة</span>
+                        </div>
+                        <div class="fleet-spec-item">
+                            <span class="fleet-spec-label">منظومة الأمان المعتمدة</span>
+                            <span class="fleet-spec-val" id="fleetSpec3">حساسات هيدروليك + فرامل طوارئ</span>
+                        </div>
+                        <div class="fleet-spec-item">
+                            <span class="fleet-spec-label">سرعة التنفيذ التقديرية</span>
+                            <span class="fleet-spec-val" id="fleetSpec4">توفير 70% من وقت النقل</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services-grid">
+                <!-- 1. الشاحنات المغلقة -->
+                <div class="service-card">
+                    <div class="service-img-box">
+                        <img src="assets/fleet.jpg" alt="أسطول شاحنات نقل عفش مقفلة">
+                        <div class="service-icon-badge">
+                            <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                                <path d="M10 17h4V5H2v12h3m9 0h2.5a2.5 2.5 0 0 0 2.5-2.5V11l-3-4h-2v10z"></path>
+                                <circle cx="7.5" cy="17.5" r="2.5"></circle>
+                                <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">أسطول شاحنات الصندوق المقفل</h3>
+                        <p class="service-desc">شاحنات مخصصة بصناديق مغلقة ومعزولة حرارياً ومبطنة من الداخل لامتصاص
+                            صدمات الطريق وحماية الأثاث من الأتربة والأمطار.</p>
+                        <ul class="service-points">
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>مجهزة بأحزمة تثبيت هيدروليكية داخل الصندوق</span>
+                            </li>
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>سعات مختلفة تناسب الفلل والمقرات الإدارية</span>
+                            </li>
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>تتبع GPS لخط السير لحظة بلحظة</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. الأوناش الهيدروليكية -->
+                <div class="service-card">
+                    <div class="service-img-box">
+                        <img src="assets/hero-lift.jpg" alt="ونش رفع عفش هيدروليكي معتمد">
+                        <div class="service-icon-badge">
+                            <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">أوناش هيدروليكية حتى الدور 25</h3>
+                        <p class="service-desc">أقوى أوناش رفع وتنزيل واجهات متطورة، تتغلب على ضيق السلالم والمصاعد
+                            وتمنع أي احتكاك بالحوائط أو واجهات العقارات.</p>
+                        <ul class="service-points">
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>منصات رفع مبطنة وذات حمولة فائقة</span>
+                            </li>
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>طاقم تشغيل مدرب على اشتراطات السلامة المهنية</span>
+                            </li>
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>سرعة إنجاز توفر أكثر من 70% من وقت العمل</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. التغليف الفندقي -->
+                <div class="service-card">
+                    <div class="service-img-box">
+                        <img src="assets/packing.jpg" alt="تغليف الأثاث الفندقي وحماية الزجاج">
+                        <div class="service-icon-badge">
+                            <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                                <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                                <rect x="1" y="3" width="22" height="5"></rect>
+                                <line x1="10" y1="12" x2="14" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">تغليف فندقي متعدد الطبقات</h3>
+                        <p class="service-desc">نظام تغليف وحماية متقدم باستخدام رولات البابلز الهوائية السميكة، الفوم
+                            المضاد للصدمات، والكرتون المقوى المخصص لأطقم الصيني والزجاج.</p>
+                        <ul class="service-points">
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>صناديق كرتون مقوى 5 طبقات للأجهزة والملابس</span>
+                            </li>
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>تغليف خاص ومزدوج للتحف والنجف والرخام</span>
+                            </li>
+                            <li>
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>ترقيم وتسمية الصناديق لتسهيل الفرز والفرش</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         Direct Enterprise Dispatch & Booking (Connected to Supabase)
+         ========================================== -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-tagline">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    <span>الحجز السحابي المباشر</span>
+                </div>
+                <h2 class="section-title">طلب موعد نقل <span class="text-gold">ومعاينة فورية</span></h2>
+                <p class="section-caption">سجّل بيانات طلبك وسيتم حفظها مباشرة في قاعدة البيانات المركزية ليتواصل معك
+                    مشرف العمليات لتأكيد التفاصيل والموعد.</p>
+            </div>
+
+            <div class="booking-panel">
+                <form id="mainBookingForm">
+                    <div class="form-grid">
+
+                        <!-- اسم العميل -->
+                        <div class="form-field">
+                            <label class="field-label">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <span>الاسم بالكامل *</span>
+                            </label>
+                            <input type="text" id="clientName" class="field-input"
+                                placeholder="مثال: م. أحمد عبد الرحمن" required>
+                        </div>
+
+                        <!-- رقم الموبايل -->
+                        <div class="form-field">
+                            <label class="field-label">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                                <span>رقم الموبايل للتواصل *</span>
+                            </label>
+                            <input type="tel" id="clientPhone" class="field-input" placeholder="01xxxxxxxxx" required
+                                dir="ltr">
+                        </div>
+
+                        <!-- تاريخ النقل -->
+                        <div class="form-group-full">
+                            <label class="field-label">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>تاريخ النقل المطلوب *</span>
+                            </label>
+                            <input type="date" id="moveDate" class="field-input" required>
+                        </div>
+
+                        <!-- من منطقة -->
+                        <div class="form-field">
+                            <label class="field-label">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>موقع التحميل (من) *</span>
+                            </label>
+                            <select id="bookFromArea" class="field-select" required></select>
+                        </div>
+
+                        <!-- إلى منطقة -->
+                        <div class="form-field">
+                            <label class="field-label">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>موقع التنزيل (إلى) *</span>
+                            </label>
+                            <select id="bookToArea" class="field-select" required></select>
+                        </div>
+
+                        <!-- التجهيزات المطلوبة -->
+                        <div class="form-group-full">
+                            <label class="field-label" style="margin-bottom: 10px;">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <polyline points="9 11 12 14 22 4"></polyline>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                </svg>
+                                <span>التجهيزات والخدمات المطلوبة:</span>
+                            </label>
+                            <div class="addons-selection-grid">
+                                <label class="addon-pill-label">
+                                    <input type="checkbox" id="bookWinch" checked>
+                                    <div class="addon-pill-inner">
+                                        <svg class="svg-icon" viewBox="0 0 24 24">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        <span>ونش هيدروليكي</span>
+                                    </div>
+                                </label>
+
+                                <label class="addon-pill-label">
+                                    <input type="checkbox" id="bookPackaging" checked>
+                                    <div class="addon-pill-inner">
+                                        <svg class="svg-icon" viewBox="0 0 24 24">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        <span>تغليف بابلز وكرتون</span>
+                                    </div>
+                                </label>
+
+                                <label class="addon-pill-label">
+                                    <input type="checkbox" id="bookCarpentry" checked>
+                                    <div class="addon-pill-inner">
+                                        <svg class="svg-icon" viewBox="0 0 24 24">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        <span>فك وتركيب الغرف</span>
+                                    </div>
+                                </label>
+
+                                <label class="addon-pill-label">
+                                    <input type="checkbox" id="bookAc">
+                                    <div class="addon-pill-inner">
+                                        <svg class="svg-icon" viewBox="0 0 24 24">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                        <span>فك وتركيب تكييف</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- الملاحظات -->
+                        <div class="form-group-full">
+                            <label class="field-label">
+                                <svg class="svg-icon" viewBox="0 0 24 24">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                                <span>ملاحظات خاصة (عرض الشارع، قطع حساسة، نوع الواجهة):</span>
+                            </label>
+                            <textarea id="clientNotes" class="field-textarea"
+                                placeholder="اذكر أي تفاصيل إضافية لمساعدتنا في تجهيز المعدات المناسبة..."></textarea>
+                        </div>
+
+                        <!-- زر الإرسال التنفيذي -->
+                        <div class="form-group-full" style="margin-top: 15px;">
+                            <button type="submit" class="btn-booking-submit">
+                                <span>تأكيد وتسجيل طلب النقل فورياً</span>
+                                <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                            <div class="booking-guarantee-note">
+                                <svg class="svg-icon" viewBox="0 0 24 24"
+                                    style="width:16px; height:16px; color:#10b981;">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                                <span>وثيقة تأمين وضمان شامل 100% ضد أي كسر أو خدش • لا يتم تحصيل أي مبالغ إلا بعد
+                                    المعاينة والاتفاق</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         Coverage Areas Section
+         ========================================== -->
+    <section class="coverage-section" id="coverage">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-tagline">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                    </svg>
+                    <span>الانتشار الجغرافي</span>
+                </div>
+                <h2 class="section-title">نطاق التغطية <span class="text-gold">والتواجد اليومي</span></h2>
+                <p class="section-caption">تتمركز شاحناتنا وفرق العمل على مدار الساعة لخدمة أرقى الأحياء والمجتمعات
+                    العمرانية والمدن الساحلية.</p>
+            </div>
+
+            <div class="areas-grid">
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">التجمع الخامس والقاهرة الجديدة</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">مدينة الرحاب ومدينتي</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">مدينة الشروق وبدر</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">العاصمة الإدارية الجديدة</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">الشيخ زايد ومدينة 6 أكتوبر</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">القاهرة (مدينة نصر، مصر الجديدة، المعادي)</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">الساحل الشمالي ومارينا والعلمين</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">العين السخنة والجونة</span>
+                </div>
+                <div class="area-box">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    </svg>
+                    <span class="area-name">الإسكندرية وجميع محافظات الدلتا والصعيد</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         Safety & Guarantee Standards
+         ========================================== -->
+    <section class="guarantee-section" id="guarantee" style="padding: 90px 0;">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-tagline">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span>وثيقة المسؤولية الكاملة</span>
+                </div>
+                <h2 class="section-title">لماذا تثق العائلات والشركات <span class="text-gold">في منظومة NAQLX |
+                        نَقْلِكس؟</span></h2>
+            </div>
+
+            <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                <div class="service-card" style="padding: 34px 28px; text-align: center; align-items: center;">
+                    <div
+                        style="width: 58px; height: 58px; border-radius: 14px; background: #EFF6FF; display: flex; align-items: center; justify-content: center; color: var(--primary-gold); margin-bottom: 20px;">
+                        <svg class="svg-icon svg-icon-xl" viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h4 style="font-size: 19px; margin-bottom: 12px;">ضمان مالي وتعويض كامل</h4>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">نلتزم رسمياً بسلامة كافة قطع
+                        الأثاث والأجهزة، وفي حال حدوث أي خدش يتم تعويضه أو معالجته فوراً بدون تأخير.</p>
+                </div>
+
+                <div class="service-card" style="padding: 34px 28px; text-align: center; align-items: center;">
+                    <div
+                        style="width: 58px; height: 58px; border-radius: 14px; background: rgba(14, 165, 233, 0.12); display: flex; align-items: center; justify-content: center; color: var(--accent-blue); margin-bottom: 20px;">
+                        <svg class="svg-icon svg-icon-xl" viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h4 style="font-size: 19px; margin-bottom: 12px;">عمالة نظامية وأمينة</h4>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">فريق عمل ثابت ومسجل رسمياً،
+                        يرتدي الزي الموحد، ومدرب على التعامل بأقصى درجات الأدب والاحترام داخل المنازل.</p>
+                </div>
+
+                <div class="service-card" style="padding: 34px 28px; text-align: center; align-items: center;">
+                    <div
+                        style="width: 58px; height: 58px; border-radius: 14px; background: rgba(16, 185, 129, 0.12); display: flex; align-items: center; justify-content: center; color: var(--accent-emerald); margin-bottom: 20px;">
+                        <svg class="svg-icon svg-icon-xl" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <h4 style="font-size: 19px; margin-bottom: 12px;">انضباط زمني بالدقيقة</h4>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">وصول الشاحنات والأوناش في
+                        الوقت المجدول بدقة، مع جدول زمني واضح لكل مرحلة لتسليم الموقع الجديد في نفس اليوم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FAQ Accordion Section
+         ========================================== -->
+    <section class="faq-section" id="faq" style="padding: 90px 0;">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-tagline">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>الاستفسارات المتكررة</span>
+                </div>
+                <h2 class="section-title">الأسئلة <span class="text-gold">الشائعة</span></h2>
+            </div>
+
+            <div class="faq-accordion">
+                <div class="faq-row active">
+                    <div class="faq-trigger">
+                        <span>ما هي المدة المتوقعة لنقل محتويات شقة كاملة؟</span>
+                        <svg class="svg-icon faq-chevron" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-content">
+                        في المتوسط، تستغرق الشقة المكونة من 3 غرف بين 4 إلى 6 ساعات شاملة الفك والتغليف المتقن والنقل
+                        وإعادة التركيب في الموقع الجديد بفضل استخدام الأوناش الهيدروليكية وتوزيع المهام بين فنيين
+                        متخصصين.
+                    </div>
+                </div>
+
+                <div class="faq-row">
+                    <div class="faq-trigger">
+                        <span>هل توقعون عقداً أو وثيقة استلام تضمن سلامة العفش؟</span>
+                        <svg class="svg-icon faq-chevron" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-content">
+                        نعم بالتأكيد، يتم توقيع أمر تشغيل واستلام رسمي يوضح كافة المنقولات مع إقرار بمسؤوليتنا القانونية
+                        والمالية الكاملة عن أي ضرر قد يحدث، مما يمنحك راحة بال تامة.
+                    </div>
+                </div>
+
+                <div class="faq-row">
+                    <div class="faq-trigger">
+                        <span>متى يُفضل استخدام الونش الهيدروليكي؟</span>
+                        <svg class="svg-icon faq-chevron" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-content">
+                        يُنصح بالونش للأدوار المرتفعة من الدور الثالث فما فوق، أو في حالات السلالم الضيقة والمداخل
+                        الحلزونية، أو عند وجود قطع أثاث ضخمة مثل الرخام والكنب الأمريكي وأطقم الزجاج الكبيرة لحمايتها من
+                        أي احتكاك.
+                    </div>
+                </div>
+
+                <div class="faq-row">
+                    <div class="faq-trigger">
+                        <span>هل يشمل التغليف أدوات المطبخ والملابس والمقتنيات الثمينة؟</span>
+                        <svg class="svg-icon faq-chevron" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                    <div class="faq-content">
+                        نعم، نوفر خامات مخصصة لكل صنف: صناديق كرتون مبطنة ومقسمة لأطقم الصيني والزجاج، بابلز هوائي
+                        للشاشات، وصناديق ملابس مخصصة بشماعات لحفظ الملابس المكوية دون تجعيد.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         Corporate Footer
+         ========================================== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="brand-logo" style="margin-bottom: 20px;">
+                        <div class="logo-symbol">
+                            <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                                <path d="M10 17h4V5H2v12h3m9 0h2.5a2.5 2.5 0 0 0 2.5-2.5V11l-3-4h-2v10z"></path>
+                                <circle cx="7.5" cy="17.5" r="2.5"></circle>
+                                <circle cx="17.5" cy="17.5" r="2.5"></circle>
+                            </svg>
+                        </div>
+                        <div class="logo-details">
+                            <span class="logo-name">NAQLX <span class="text-gold">| نَقْلِكس</span></span>
+                            <span class="logo-subtext">ENTERPRISE LOGISTICS SYSTEM</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
+                        المنظومة الهندسية الأولى في مصر المتخصصة في الخدمات اللوجستية لنقل وتغليف الأثاث المنزلي
+                        والمكتبي،
+                        وأحدث أوناش الرفع الهيدروليكي حتى الدور 25.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">الروابط السريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">الخدمات المعتمدة</a></li>
+                        <li><a href="#process">مراحل التنفيذ</a></li>
+                        <li><a href="#booking">حجز موعد</a></li>
+                        <li><a href="#coverage">نطاق التغطية</a></li>
+                        <li><a href="admin.html">بوابة المسؤولين</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">خدمات النقل</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">شاحنات الصندوق المقفل</a></li>
+                        <li><a href="#services">أوناش هيدروليكية حتى 25 دور</a></li>
+                        <li><a href="#services">تغليف فندقي بابلز وفوم</a></li>
+                        <li><a href="#services">فك وتركيب متقن مع نجارين</a></li>
+                        <li><a href="#services">فك وتجهيز التكييفات والنجف</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">قنوات الاتصال المباشر</h4>
+                    <div class="footer-contacts-list">
+                        <div class="footer-contact-row">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <div>
+                                <a href="tel:01007245515">01007245515</a> /
+                                <a href="tel:01006672783">01006672783</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-row">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <a href="tel:+201113428840">+20 11 13428840 (خط الطوارئ والعمليات)</a>
+                        </div>
+                        <div class="footer-contact-row">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                </path>
+                            </svg>
+                            <a href="https://wa.me/201006672783" target="_blank" class="link-whatsapp">واتساب مباشر:
+                                01006672783</a>
+                        </div>
+                        <div class="footer-contact-row">
+                            <svg class="svg-icon" viewBox="0 0 24 24">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <a href="mailto:info@naqlx.com">info@naqlx.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 منظومة NAQLX | نَقْلِكس اللوجستية. جميع الحقوق محفوظة ومسجلة رسميًا في جمهورية مصر العربية.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         Floating Quick Action Suite (Pulsing Radar Edition)
+         ========================================== -->
+    <div class="floating-actions">
+        <!-- WhatsApp with Radar Ping & Badge -->
+        <a href="https://wa.me/201006672783" target="_blank" class="floating-btn floating-whatsapp link-whatsapp"
+            title="تواصل واتساب مباشر">
+            <span class="floating-pulse-ring"></span>
+            <span class="floating-badge-ping">1</span>
+            <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                </path>
+            </svg>
+            <span class="floating-tooltip">واتساب المبيعات متاح الآن</span>
+        </a>
+        <!-- Fast Call with Hotline Glow -->
+        <a href="tel:01007245515" class="floating-btn floating-call link-call-main" title="اتصال هاتفي فوري">
+            <span class="floating-pulse-ring-blue"></span>
+            <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24">
+                <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+            </svg>
+            <span class="floating-tooltip">اتصال مباشر 24 ساعة</span>
+        </a>
+    </div>
+
+    <!-- ==========================================
+         VIP Dispatch Voucher Modal (Boarding Pass Layout)
+         ========================================== -->
+    <div class="modal-backdrop" id="successModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+
+            <div class="modal-ticket-head">
+                <span class="modal-ticket-badge">
+                    <svg class="svg-icon" viewBox="0 0 24 24" style="width:14px; height:14px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    تذكرة تحرك لوجستي سحابية معتمدة
+                </span>
+            </div>
+
+            <h3 style="font-size: 23px; margin-bottom: 6px;">تم اعتماد تسجيل طلبك بنجاح</h3>
+            <p style="color: var(--text-secondary); font-size: 14px; max-width: 440px; margin: 0 auto 16px;">
+                تم ربط بيانات طلبك بنظام العمليات الميداني وتجهيز الشاحنة والونش للمعاينة والتنفيذ.
+            </p>
+
+            <div class="booking-code-box">
+                <div>
+                    <div style="font-size: 11.5px; color: var(--text-muted); text-align: right;">كود الحجز السحابي:
+                    </div>
+                    <div class="booking-code-val" id="modalBookingCode">NP-0000</div>
+                </div>
+                <button type="button" class="btn-copy-code" id="modalCopyBtn" title="نسخ كود الحجز">
+                    <svg class="svg-icon" viewBox="0 0 24 24" style="width:14px; height:14px;">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>نسخ الكود</span>
+                </button>
+            </div>
+
+            <div class="modal-summary-card" id="modalOrderSummary">
+                <!-- ملخص الطلب -->
+            </div>
+
+            <div class="modal-barcode-graphic" aria-hidden="true">
+                <div class="barcode-bar wide"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar wide"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar wide"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar wide"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar wide"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar wide"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar"></div>
+                <div class="barcode-bar wide"></div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+                <a href="#" id="modalWhatsAppBtn" target="_blank" class="btn btn-whatsapp" style="width: 100%;">
+                    <svg class="svg-icon" viewBox="0 0 24 24">
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                        </path>
+                    </svg>
+                    <span>تأكيد الموعد عبر واتساب المبيعات الآن</span>
+                </a>
+                <a href="tel:01007245515" class="btn btn-outline" style="width: 100%;">
+                    <span>اتصال بمسؤول التشغيل (01007245515)</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Luxury Toast Notification Element -->
+    <div id="luxToast" class="lux-toast">
+        <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--primary-gold);">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="luxToastMsg">تم نسخ كود الحجز بنجاح!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
