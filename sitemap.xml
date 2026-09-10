@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://na2lax.com/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Hero Image - Hydraulic Lift -->
+    <image:image>
+      <image:loc>https://na2lax.com/assets/hero-lift.webp</image:loc>
+      <image:title>ونش رفع أثاث هيدروليكي في مصر | NA2LAX</image:title>
+      <image:caption>أحدث ونش هيدروليكي لرفع وتنزيل العفش حتى الدور 25 في مصر بأعلى معايير الأمان</image:caption>
+    </image:image>
+    
+    <!-- Fleet Image - Closed Logistics Trucks -->
+    <image:image>
+      <image:loc>https://na2lax.com/assets/fleet.webp</image:loc>
+      <image:title>أسطول شاحنات وسيارات نقل عفش مغلقة ومجهزة | NA2LAX</image:title>
+      <image:caption>سيارات وشاحنات مغلقة مجهزة بالكامل لنقل الأثاث بأمان داخل القاهرة والجيزة والمحافظات</image:caption>
+    </image:image>
+
+    <!-- Packing Image - Hotel-grade Packing & Furniture Protection -->
+    <image:image>
+      <image:loc>https://na2lax.com/assets/packing.webp</image:loc>
+      <image:title>خدمات تغليف وفك وتركيب الأثاث المنزلي والمكتبي | NA2LAX</image:title>
+      <image:caption>تغليف فندقي بفقاعات ورول كرتوني وفنيين متخصصين لفك وتركيب الغرف والمطابخ والتكييفات</image:caption>
+    </image:image>
+  </url>
+</urlset>
