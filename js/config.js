@@ -20,7 +20,7 @@ const CONFIG = {
             { number: "01006672783", label: "خط واتساب ومبيعات" },
             { number: "+201113428840", label: "خط الطوارئ والعمليات" }
         ],
-        email: "info@naqlx.com",
+        email: "info@na2lax.com",
         workingHours: "خدمة 24 ساعة طوال أيام الأسبوع"
     },
 

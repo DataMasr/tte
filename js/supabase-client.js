@@ -437,6 +437,42 @@ const Na2laDB = (function () {
             return { success: true, orders: localOrders, source: "local" };
         },
 
+        // البحث عن طلب بكود الحجز للاستعلام السحابي
+        async getOrderByCode(code) {
+            if (!code) return { success: false, error: "يرجى إدخال كود الحجز" };
+            const cleanCode = code.toString().trim().toUpperCase();
+
+            // 1. محاولة البحث السحابي في Supabase أولاً
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/orders?booking_code=eq.${encodeURIComponent(cleanCode)}&select=*`, {
+                    method: "GET",
+                    headers: getHeaders(true)
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (Array.isArray(data) && data.length > 0) {
+                        return { success: true, order: data[0], source: "supabase" };
+                    }
+                }
+            } catch (err) {
+                console.warn("Remote search error, checking local storage:", err);
+            }
+
+            // 2. البحث في الكاش والتخزين المحلي
+            const localList = getLocalOrders();
+            const found = localList.find(o => 
+                (o.booking_code && o.booking_code.toUpperCase() === cleanCode) ||
+                (o.id && o.id.toString().toUpperCase() === cleanCode)
+            );
+
+            if (found) {
+                return { success: true, order: found, source: "local" };
+            }
+
+            return { success: false, error: "لم يتم العثور على طلب مسجل بهذا الكود. يرجى مراجعة الكود أو التواصل معنا." };
+        },
+
         // تحديث حالة الطلب
         async updateStatus(orderId, newStatus) {
             const local = getLocalOrders();

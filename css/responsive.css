@@ -5,9 +5,36 @@
    ============================================================================== */
 
 /* ------------------------------------------------------------------------------
-   1. Tablet & Small Laptop Screens (max-width: 1024px)
+   0. Compact Desktop & Laptop Screens (1025px - 1280px)
    ------------------------------------------------------------------------------ */
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
+    .nav-container {
+        padding: 8px 14px !important;
+        gap: 8px !important;
+    }
+    .nav-menu a {
+        padding: 5px 8px !important;
+        font-size: 12.5px !important;
+    }
+    .nav-call-number {
+        display: none !important;
+    }
+    .btn-nav-call {
+        padding: 7px 10px !important;
+    }
+    .btn-nav-book {
+        padding: 7px 14px !important;
+        font-size: 12.5px !important;
+    }
+    .logo-subtext {
+        display: none !important;
+    }
+}
+
+/* ------------------------------------------------------------------------------
+   1. Tablet & Small Laptop Screens (max-width: 1200px)
+   ------------------------------------------------------------------------------ */
+@media (max-width: 1200px) {
     .nav-capsule {
         display: none;
     }

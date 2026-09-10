@@ -4,8 +4,8 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://na2lax.com/</loc>
-    <lastmod>2026-09-10</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     
     <!-- Hero Image - Hydraulic Lift -->
@@ -27,6 +27,42 @@
       <image:loc>https://na2lax.com/assets/packing.webp</image:loc>
       <image:title>خدمات تغليف وفك وتركيب الأثاث المنزلي والمكتبي | NA2LAX</image:title>
       <image:caption>تغليف فندقي بفقاعات ورول كرتوني وفنيين متخصصين لفك وتركيب الغرف والمطابخ والتكييفات</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Topic Cluster: Winch Hydraulic Guide -->
+  <url>
+    <loc>https://na2lax.com/winch-guide.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://na2lax.com/assets/hero-lift.webp</image:loc>
+      <image:title>دليل ونش رفع الأثاث الهيدروليكي حتى الدور 25 | نَقْلِكس</image:title>
+    </image:image>
+  </url>
+
+  <!-- Topic Cluster: Packing Protocol Guide -->
+  <url>
+    <loc>https://na2lax.com/packing-guide.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://na2lax.com/assets/packing.webp</image:loc>
+      <image:title>دليل التغليف الفندقي وحماية العفش الفاخر | نَقْلِكس</image:title>
+    </image:image>
+  </url>
+
+  <!-- Topic Cluster: Pricing Transparency Guide -->
+  <url>
+    <loc>https://na2lax.com/pricing-guide.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://na2lax.com/assets/fleet.webp</image:loc>
+      <image:title>دليل أسعار نقل العفش 2026 وحيل السماسرة | نَقْلِكس</image:title>
     </image:image>
   </url>
 </urlset>
