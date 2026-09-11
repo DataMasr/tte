@@ -98,181 +98,213 @@
     </script>
 </head>
 
-<body class="guide-page">
-    <!-- Navbar -->
-    <header class="navbar" id="siteHeader">
-        <div class="container nav-container">
-            <a href="index.html" class="logo" aria-label="الرئيسية NAQLX">
-                <span class="logo-accent">NAQLX</span>
-                <span class="logo-sub">نَقْلِكس</span>
+<body>
+    <!-- Nav Header -->
+    <header class="main-nav-wrapper">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" aria-label="الرئيسية">
+                <div class="logo-symbol">
+                    <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24"><path d="M10 17h4V5H2v12h3m9 0h2.5a2.5 2.5 0 0 0 2.5-2.5V11l-3-4h-2v10z"></path><circle cx="7.5" cy="17.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+                </div>
+                <div class="logo-details">
+                    <div class="logo-name-row">
+                        <span class="logo-name">NAQLX</span>
+                        <span class="logo-name-ar">نَقْلِكس</span>
+                    </div>
+                    <span class="logo-subtext">ENTERPRISE LOGISTICS SYSTEM</span>
+                </div>
             </a>
-            <nav class="nav-links" aria-label="روابط الموقع">
-                <a href="index.html">الرئيسية</a>
-                <a href="index.html#services">خدماتنا</a>
-                <a href="index.html#calculator">حاسبة الأسعار</a>
-                <a href="index.html#tracking">تتبع شحنتك</a>
-                <a href="index.html#knowledge-hub" class="active">مركز المعرفة</a>
+
+            <nav class="nav-capsule">
+                <ul class="nav-menu">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="winch-guide.html" class="active">دليل الأوناش</a></li>
+                    <li><a href="packing-guide.html">دليل التغليف الفندقي</a></li>
+                    <li><a href="pricing-guide.html">دليل الأسعار 2026</a></li>
+                    <li><a href="index.html#calculator">حاسبة التكلفة</a></li>
+                </ul>
             </nav>
-            <div class="nav-actions">
-                <a href="tel:01007245515" class="btn btn-primary btn-sm">اتصال سريع</a>
+
+            <div class="nav-cta-group">
+                <a href="tel:01007245515" class="btn-nav-call" title="اتصال مباشر بالخط الساخن">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <span>01007245515</span>
+                </a>
+                <a href="index.html#booking" class="btn-nav-book">طلب معاينة ونش</a>
             </div>
         </div>
     </header>
 
-    <main class="container guide-main" style="padding-top: 100px; padding-bottom: 80px; max-width: 960px;">
-        <!-- Breadcrumbs -->
-        <nav class="breadcrumb-nav" aria-label="مسار التنقل" style="margin-bottom: 24px;">
-            <a href="index.html" style="color:var(--text-muted); text-decoration:none;">الرئيسية</a>
-            <span style="color:var(--text-muted); margin:0 8px;">/</span>
-            <a href="index.html#knowledge-hub" style="color:var(--text-muted); text-decoration:none;">مركز المعرفة</a>
-            <span style="color:var(--text-muted); margin:0 8px;">/</span>
-            <span style="color:var(--primary); font-weight:700;">دليل الأوناش الهيدروليكية</span>
-        </nav>
+    <!-- Main Article -->
+    <main style="padding: 60px 0 100px;">
+        <div class="container" style="max-width: 960px;">
+            <!-- Breadcrumbs -->
+            <nav style="font-size: 13px; color: var(--text-muted); margin-bottom: 24px; display: flex; align-items: center; gap: 8px;">
+                <a href="index.html" style="color: var(--text-muted); text-decoration: none;">الرئيسية</a>
+                <span>/</span>
+                <a href="index.html#knowledge-hub" style="color: var(--text-muted); text-decoration: none;">مركز المعرفة الهندسية</a>
+                <span>/</span>
+                <span style="color: #1D4ED8; font-weight: 700;">دليل الأوناش الهيدروليكية</span>
+            </nav>
 
-        <!-- Article Header -->
-        <article>
-            <header class="guide-header" style="margin-bottom: 40px;">
-                <div class="category-pill" style="display:inline-block; padding:4px 14px; background:rgba(37,99,235,0.1); color:var(--primary); border-radius:999px; font-weight:700; font-size:13px; margin-bottom:12px;">الهندسة اللوجستية والرفع الهيدروليكي</div>
-                <h1 style="font-size: clamp(24px, 4vw, 36px); line-height: 1.3; margin-bottom: 16px; font-family:'Alexandria', sans-serif;">
-                    دليل الأوناش الهيدروليكية لرفع الأثاث للأدوار العليا حتى الدور 25
-                </h1>
-                <p style="color: var(--text-muted); font-size: 17px; line-height: 1.7;">
-                    رفع المقتنيات الثقيلة والقطع الحساسة عبر السلالم التقليدية هو السبب الأول لتلف 78% من قطع العفش في مصر. في هذا الدليل التخصصي، نستعرض المعايير الهندسية للأوناش الهيدروليكية الحديثة، وكيف تضمن إنزال ورفع أثاثك بدون خدش واحد.
-                </p>
-            </header>
+            <!-- Status Pill -->
+            <div class="status-pill" style="margin-bottom: 16px;">
+                <span class="pulse-indicator"></span>
+                <span>المعايير الهندسية لرفع الأثاث 2026</span>
+            </div>
+
+            <!-- Title & Lead -->
+            <h1 style="font-size: clamp(28px, 4.5vw, 42px); line-height: 1.25; margin-bottom: 18px; color: var(--text-pure);">
+                دليل الأوناش الهيدروليكية <span class="text-gold">لرفع الأثاث للأدوار العليا</span> حتى الدور 25
+            </h1>
+
+            <p style="font-size: 17px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 40px;">
+                رفع المقتنيات الثقيلة والقطع الحساسة عبر السلالم التقليدية هو السبب الأول لتلف 78% من قطع العفش في مصر. في هذا الدليل التخصصي، نستعرض المعايير الهندسية للأوناش الهيدروليكية الحديثة، وكيف تضمن إنزال ورفع أثاثك بدون خدش واحد.
+            </p>
 
             <!-- Featured Image -->
-            <div class="guide-featured-img" style="border-radius: 16px; overflow: hidden; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+            <div style="border-radius: 24px; overflow: hidden; margin-bottom: 45px; box-shadow: var(--shadow-card);">
                 <img src="assets/hero-lift.webp" alt="ونش هيدروليكي عملاق لرفع الأثاث حتى الدور 25 في القاهرة الجديدة" style="width: 100%; height: auto; display: block;" loading="eager" width="960" height="540">
             </div>
 
-            <!-- Content Sections -->
-            <section class="guide-section" style="margin-bottom: 40px;">
-                <h2 style="font-size: 22px; margin-bottom: 16px; color: var(--text-dark);">لماذا يعتبر الونش الهيدروليكي الخيار الأكثر أماناً للأثاث؟</h2>
-                <p style="line-height: 1.8; color: var(--text-base); margin-bottom: 16px;">
+            <!-- Section 1 -->
+            <section style="margin-bottom: 45px;">
+                <h2 style="font-size: 24px; margin-bottom: 16px; color: var(--text-pure); font-weight: 800;">
+                    لماذا يعتبر الونش الهيدروليكي الخيار الأكثر أماناً للأثاث؟
+                </h2>
+                <p style="font-size: 16px; line-height: 1.85; color: var(--text-secondary); margin-bottom: 20px;">
                     تتميز المباني السكنية الحديثة في مناطق مثل <strong>التجمع الخامس، الشيخ زايد، والمعادي</strong> بمداخل رخامية واسعة ولكن ممرات وسلالم داخلية تمنع مرور الكنب الأمريكي، أطقم النوم الكلاسيكية، أو الأجهزة الكهربائية الضخمة مثل الثلاجات المزدوجة والشاشات العملاقة.
                 </p>
-                <div style="background: rgba(37,99,235,0.04); border-right: 4px solid var(--primary); padding: 18px 24px; border-radius: 8px; margin-bottom: 24px;">
-                    <h3 style="font-size: 16px; margin-bottom: 8px; font-weight: 700;">الميزات الهندسية لأسطول أوناش NAQLX:</h3>
-                    <ul style="margin: 0; padding-right: 20px; line-height: 1.8;">
-                        <li><strong>منصة مصفحة بموانع انزلاق:</strong> مصممة لتثبيت المنقولات دون أي حركة اهتزازية أثناء الصعود.</li>
-                        <li><strong>نظام هيدروليكي ألماني سلس:</strong> يمنع الصدمات والارتطام أثناء بدء الحركة أو التوقف عند شرفة العميل.</li>
-                        <li><strong>حمولة تصل إلى 400 كجم في النقلة الواحدة:</strong> تمكن الطاقم من نقل محتويات غرفة كاملة خلال 12 دقيقة فقط.</li>
+
+                <!-- Technical Features Callout Box -->
+                <div style="background: #EFF6FF; border: 1px solid #BFDBFE; border-right: 4px solid var(--primary-gold); padding: 24px 28px; border-radius: 18px; margin: 24px 0 36px;">
+                    <h3 style="font-size: 17px; margin-bottom: 12px; font-weight: 800; color: #1D4ED8;">الميزات الهندسية لأسطول أوناش NAQLX:</h3>
+                    <ul style="margin: 0; padding-right: 20px; line-height: 1.9; color: var(--text-pure); font-size: 15px;">
+                        <li style="margin-bottom: 8px;"><strong>منصة مصفحة بموانع انزلاق:</strong> مصممة لتثبيت المنقولات دون أي حركة اهتزازية أثناء الصعود والنزول.</li>
+                        <li style="margin-bottom: 8px;"><strong>نظام هيدروليكي ألماني سلس:</strong> يمنع الصدمات والارتطام أثناء بدء الحركة أو التوقف عند شرفة العميل.</li>
+                        <li><strong>حمولة تصل إلى 400 كجم في النقلة الواحدة:</strong> تمكن الطاقم من نقل محتويات غرفة كاملة خلال 12 دقيقة فقط وبأعلى درجات الأمان.</li>
                     </ul>
                 </div>
             </section>
 
-            <!-- Comparison Table -->
-            <section class="guide-section" style="margin-bottom: 40px;">
-                <h2 style="font-size: 22px; margin-bottom: 16px; color: var(--text-dark);">مقارنة فنية: الونش الهيدروليكي مقابل الونش الكهربائي الواير</h2>
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 15px; margin-top: 12px;">
-                        <thead>
-                            <tr style="background: var(--surface-2); border-bottom: 2px solid var(--border);">
-                                <th style="padding: 12px 16px;">وجه المقارنة</th>
-                                <th style="padding: 12px 16px;">الونش الهيدروليكي (شاحنة مجهزة)</th>
-                                <th style="padding: 12px 16px;">الونش الكهربائي (المعلق / الواير)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 12px 16px; font-weight: 700;">أقصى ارتفاع</td>
-                                <td style="padding: 12px 16px; color: var(--primary); font-weight: 700;">حتى الدور 25 (75 متراً)</td>
-                                <td style="padding: 12px 16px;">حتى الدور 12</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 12px 16px; font-weight: 700;">درجة الثبات والأمان</td>
-                                <td style="padding: 12px 16px; color: #059669; font-weight: 700;">ثبات تام بدون تأرجح (100%)</td>
-                                <td style="padding: 12px 16px;">قد يتأثر بحركة الرياح في الأدوار العليا</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 12px 16px; font-weight: 700;">سرعة التنفيذ</td>
-                                <td style="padding: 12px 16px;">سريعة جداً (إنهاء الشقة في ساعتين)</td>
-                                <td style="padding: 12px 16px;">متوسطة السرعة</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--border);">
-                                <td style="padding: 12px 16px; font-weight: 700;">الملاءمة للشوارع</td>
-                                <td style="padding: 12px 16px;">الشوارع المتوسطة والواسعة (أكبر من 6م)</td>
-                                <td style="padding: 12px 16px;">الحارات والأزقة شديدة الضيق</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Technical Comparison Table Section -->
+            <section style="margin-bottom: 50px;">
+                <h2 style="font-size: 24px; margin-bottom: 16px; color: var(--text-pure); font-weight: 800;">
+                    مقارنة فنية: الونش الهيدروليكي مقابل الونش الكهربائي الواير
+                </h2>
+                <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px;">
+                    يوضح الجدول التالي الفروق الجوهرية بين الأوناش الهيدروليكية الألمانية المثبتة على شاحنات مجهزة وبين أوناش الواير المعلقة الشائعة لدى سماسرة الشارع:
+                </p>
+
+                <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 30px;">
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 14px; min-width: 580px;">
+                            <thead>
+                                <tr style="background: #F8FAFC; border-bottom: 2px solid var(--border-subtle);">
+                                    <th style="padding: 16px 20px; font-family: var(--font-heading); font-weight: 800; color: var(--text-pure);">وجه المقارنة</th>
+                                    <th style="padding: 16px 20px; font-family: var(--font-heading); font-weight: 800; background: #EFF6FF; color: #1D4ED8; border-top: 3px solid var(--primary-gold);">الونش الهيدروليكي (شاحنة NAQLX)</th>
+                                    <th style="padding: 16px 20px; font-family: var(--font-heading); font-weight: 800; background: #FEF2F2; color: #991B1B; border-top: 3px solid #EF4444;">الونش الكهربائي (المعلق / الواير)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                    <td style="padding: 16px 20px; font-weight: 800; color: var(--text-pure);">أقصى ارتفاع آمن</td>
+                                    <td style="padding: 16px 20px; background: rgba(239, 246, 255, 0.4); color: #1D4ED8; font-weight: 800;">حتى الدور 25 (75 متراً)</td>
+                                    <td style="padding: 16px 20px; background: rgba(254, 242, 242, 0.3); color: var(--text-secondary);">حتى الدور 10 - 12 بحد أقصى</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                    <td style="padding: 16px 20px; font-weight: 800; color: var(--text-pure);">درجة الثبات والأمان</td>
+                                    <td style="padding: 16px 20px; background: rgba(239, 246, 255, 0.4); color: #059669; font-weight: 800;">ثبات تام بركائز تثبيت هيدروليكية (100%)</td>
+                                    <td style="padding: 16px 20px; background: rgba(254, 242, 242, 0.3); color: #DC2626;">يتأرجح بشدة مع الرياح ويهدد الواجهات</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                                    <td style="padding: 16px 20px; font-weight: 800; color: var(--text-pure);">سرعة التنفيذ الميداني</td>
+                                    <td style="padding: 16px 20px; background: rgba(239, 246, 255, 0.4); color: var(--text-pure); font-weight: 700;">فائقة السرعة (إنهاء الشقة في ساعتين)</td>
+                                    <td style="padding: 16px 20px; background: rgba(254, 242, 242, 0.3); color: var(--text-secondary);">بطيئة وتستغرق أكثر من 6 ساعات</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 16px 20px; font-weight: 800; color: var(--text-pure);">الملاءمة لطبيعة الشوارع</td>
+                                    <td style="padding: 16px 20px; background: rgba(239, 246, 255, 0.4); color: var(--text-pure); font-weight: 700;">الشوارع المتوسطة والواسعة (أكبر من 6م)</td>
+                                    <td style="padding: 16px 20px; background: rgba(254, 242, 242, 0.3); color: var(--text-secondary);">الحارات والأزقة شديدة الضيق فقط</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
-            <!-- FAQ Section with Accordion -->
-            <section class="guide-section" style="margin-bottom: 50px;">
-                <h2 style="font-size: 22px; margin-bottom: 20px; color: var(--text-dark);">الأسئلة الشائعة حول حجز واستخدام أوناش رفع الأثاث</h2>
-                <div class="faq-list">
-                    <div class="faq-item" style="border:1px solid var(--border); border-radius:12px; margin-bottom:12px; padding:16px 20px; background:var(--surface);">
-                        <h3 style="font-size: 16px; margin-bottom: 8px; font-weight:700; color:var(--text-dark);">ما هو أقصى ارتفاع يمكن للونش الهيدروليكي الوصول إليه بأمان؟</h3>
-                        <p style="color:var(--text-muted); line-height:1.7; margin:0;">
+            <!-- FAQ Section -->
+            <section style="margin-bottom: 50px;">
+                <h2 style="font-size: 24px; margin-bottom: 20px; color: var(--text-pure); font-weight: 800;">
+                    الأسئلة الشائعة حول حجز واستخدام أوناش رفع الأثاث
+                </h2>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow-sm);">
+                        <h4 style="font-size: 16.5px; font-weight: 800; color: #1D4ED8; margin-bottom: 8px;">ما هو أقصى ارتفاع يمكن للونش الهيدروليكي الوصول إليه بأمان؟</h4>
+                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin: 0;">
                             تصل أوناش NAQLX الهيدروليكية الحديثة حتى الدور 25 (بارتفاع 75 متراً) مع ركائز تثبيت هيدروليكية تضمن ثبات المنصة بزاوية ميل محسوبة هندسياً ضد الرياح.
                         </p>
                     </div>
-                    <div class="faq-item" style="border:1px solid var(--border); border-radius:12px; margin-bottom:12px; padding:16px 20px; background:var(--surface);">
-                        <h3 style="font-size: 16px; margin-bottom: 8px; font-weight:700; color:var(--text-dark);">هل يمكن تشغيل الونش في الشوارع والحارات الضيقة؟</h3>
-                        <p style="color:var(--text-muted); line-height:1.7; margin:0;">
+                    <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow-sm);">
+                        <h4 style="font-size: 16.5px; font-weight: 800; color: #1D4ED8; margin-bottom: 8px;">هل يمكن تشغيل الونش في الشوارع والحارات الضيقة؟</h4>
+                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin: 0;">
                             نعم، تمتلك الشركة أوناشاً مدمجة مصممة خصيصاً للشوارع التي يقل عرضها عن 6 أمتار، بالإضافة إلى الأوناش الكهربائية المعلقة (الواير) للمداخل شديدة الضيق.
                         </p>
                     </div>
-                    <div class="faq-item" style="border:1px solid var(--border); border-radius:12px; margin-bottom:12px; padding:16px 20px; background:var(--surface);">
-                        <h3 style="font-size: 16px; margin-bottom: 8px; font-weight:700; color:var(--text-dark);">كيف يتم حماية واجهات المباني والزجاج أثناء حركة مصعد الونش؟</h3>
-                        <p style="color:var(--text-muted); line-height:1.7; margin:0;">
+                    <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow-sm);">
+                        <h4 style="font-size: 16.5px; font-weight: 800; color: #1D4ED8; margin-bottom: 8px;">كيف يتم حماية واجهات المباني والزجاج أثناء حركة مصعد الونش؟</h4>
+                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin: 0;">
                             تعتمد السلالم الهيدروليكية على حساسات مسافة ومصدات مطاطية عالية الكثافة تمنع ملامسة الواجهات أو درابزينات الشرفات إطلاقاً.
                         </p>
                     </div>
                 </div>
             </section>
 
-            <!-- CTA Callout -->
-            <div style="background: linear-gradient(135deg, #1E40AF, #2563EB); color: #fff; border-radius: 16px; padding: 32px; text-align: center; margin-top: 40px;">
-                <h3 style="font-size: 22px; margin-bottom: 12px; font-family:'Alexandria', sans-serif;">هل تحتاج لمعاينة فنية فورية لموقع شاحنة الونش؟</h3>
-                <p style="font-size: 16px; margin-bottom: 24px; opacity: 0.9;">فريق المهندسين الميدانيين متاح 24 ساعة لفحص واجهة المبنى وتأمين أفضل مسار هيدروليكي.</p>
-                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                    <a href="tel:01007245515" class="btn" style="background:#fff; color:#1E40AF; font-weight:700; padding:12px 28px; border-radius:999px; text-decoration:none;">اتصال فوري: 01007245515</a>
-                    <a href="https://wa.me/201006672783?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20ونش%20رفع%20اثاث" class="btn" style="background:#25D366; color:#fff; font-weight:700; padding:12px 28px; border-radius:999px; text-decoration:none;">واتساب العمليات</a>
+            <!-- CTA Card -->
+            <div style="background: linear-gradient(135deg, #1E40AF 0%, #1D4ED8 100%); border-radius: 28px; padding: 40px; color: #FFFFFF; text-align: center; box-shadow: var(--shadow-card-hover);">
+                <h3 style="font-size: 26px; font-weight: 900; margin-bottom: 12px; color: #FFFFFF;">
+                    هل تحتاج لمعاينة فنية فورية لموقع شاحنة الونش؟
+                </h3>
+                <p style="font-size: 15.5px; color: #DBEAFE; max-width: 600px; margin: 0 auto 24px; line-height: 1.8;">
+                    فريق المهندسين الميدانيين متاح 24 ساعة لفحص واجهة المبنى وتأمين أفضل مسار هيدروليكي لرفع وتنزيل أثاثك بدون أي مخاطرة.
+                </p>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;">
+                    <a href="index.html#booking" class="btn" style="background:#FFFFFF !important; color:#1D4ED8 !important;">طلب معاينة وحجز الونش</a>
+                    <a href="https://wa.me/201006672783?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20ونش%20رفع%20اثاث" target="_blank" class="btn btn-whatsapp" style="background: #10B981 !important;">تواصل واتساب مع العمليات</a>
                 </div>
             </div>
-        </article>
+
+            <!-- Cluster Nav Links -->
+            <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                <a href="packing-guide.html" style="color: #1D4ED8; font-weight: 700; text-decoration: none;">← دليل التغليف الفندقي 5 طبقات</a>
+                <a href="pricing-guide.html" style="color: #1D4ED8; font-weight: 700; text-decoration: none;">دليل أسعار ومقايسات نقل العفش 2026 →</a>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content" style="padding: 40px 0; border-top: 1px solid var(--border);">
-            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;">
-                <div>
-                    <div style="font-weight:800; font-size:18px; margin-bottom:8px;">NAQLX | نَقْلِكس</div>
-                    <p style="color:var(--text-muted); font-size:14px; max-width:320px;">منظومة نقل الأثاث الفندقي والهندسي الذكي في القاهرة الكبرى وكافة المحافظات.</p>
-                </div>
-                <div>
-                    <div style="font-weight:700; margin-bottom:8px;">أدلة مركز المعرفة:</div>
-                    <ul style="list-style:none; padding:0; line-height:2; font-size:14px;">
-                        <li><a href="winch-guide.html" style="color:var(--primary); text-decoration:none; font-weight:700;">دليل الأوناش الهيدروليكية</a></li>
-                        <li><a href="packing-guide.html" style="color:var(--text-muted); text-decoration:none;">دليل التغليف الفندقي الشامل</a></li>
-                        <li><a href="pricing-guide.html" style="color:var(--text-muted); text-decoration:none;">دليل الأسعار والحماية من النصب</a></li>
-                    </ul>
-                </div>
-            </div>
+    <footer class="main-footer">
+        <div class="container" style="text-align: center;">
+            <p style="color: #94A3B8; font-size: 14px; margin: 0;">
+                © 2026 NAQLX | نَقْلِكس للحلول والخدمات اللوجستية المتطورة. جميع الحقوق محفوظة.
+            </p>
         </div>
     </footer>
 
-    <!-- Sticky Mobile Conversion Action Bar -->
+    <!-- Bottom Sticky Conversion Bar -->
     <div class="sticky-mobile-bar" id="stickyMobileBar">
-        <div class="sticky-mobile-content">
-            <a href="tel:01007245515" class="sticky-btn sticky-call">
-                <svg class="svg-icon" viewBox="0 0 24 24" style="width:18px; height:18px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <span>اتصال فوري</span>
-            </a>
-            <a href="https://wa.me/201006672783?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20ونش%20رفع%20اثاث" target="_blank" rel="noopener noreferrer" class="sticky-btn sticky-wa">
-                <svg class="svg-icon" viewBox="0 0 24 24" style="width:18px; height:18px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                <span>واتساب</span>
-            </a>
-            <a href="index.html#calculator" class="sticky-btn sticky-calc">
-                <svg class="svg-icon" viewBox="0 0 24 24" style="width:18px; height:18px;"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M8 10h.01"></path><path d="M12 10h.01"></path><path d="M16 10h.01"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path></svg>
-                <span>الحاسبة</span>
-            </a>
-        </div>
+        <a href="tel:01007245515" class="sticky-bar-btn call" aria-label="اتصال فوري بالخط الساخن">
+            <svg class="svg-icon" viewBox="0 0 24 24" style="width:16px; height:16px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>اتصال فوري</span>
+        </a>
+        <a href="https://wa.me/201006672783?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20ونش%20رفع%20اثاث" target="_blank" class="sticky-bar-btn whatsapp" aria-label="واتساب VIP المباشر">
+            <svg class="svg-icon" viewBox="0 0 24 24" style="width:16px; height:16px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            <span>واتساب الونش</span>
+        </a>
+        <a href="index.html#booking" class="sticky-bar-btn calc" aria-label="طلب معاينة الونش">
+            <svg class="svg-icon" viewBox="0 0 24 24" style="width:16px; height:16px;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <span>معاينة ونش</span>
+        </a>
     </div>
 </body>
 

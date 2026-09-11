@@ -876,16 +876,21 @@ function initOrderTracker() {
 // ==============================================================================
 function initStickyMobileBar() {
     const bar = document.getElementById("stickyMobileBar");
+    const floating = document.querySelector(".floating-actions");
     if (!bar) return;
 
     let ticking = false;
     window.addEventListener("scroll", () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                if (window.scrollY > 380) {
+                if (window.scrollY > 320) {
                     bar.classList.add("active");
+                    document.body.classList.add("sticky-active");
+                    if (floating) floating.classList.add("hidden-by-sticky");
                 } else {
                     bar.classList.remove("active");
+                    document.body.classList.remove("sticky-active");
+                    if (floating) floating.classList.remove("hidden-by-sticky");
                 }
                 ticking = false;
             });

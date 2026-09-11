@@ -689,12 +689,183 @@
         font-size: 13.5px;
     }
 
-    /* Floating Quick Action Suite Mobile */
+    /* ==============================================================================
+       Live Tracking Panel Mobile
+       ============================================================================== */
+    .tracking-panel {
+        padding: 24px 16px;
+        border-radius: 20px;
+    }
+
+    .tracking-search-bar {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 18px;
+        padding: 12px;
+        gap: 12px;
+        background: #FFFFFF;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .tracking-input-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 4px 6px;
+    }
+
+    .tracking-search-input {
+        width: 100%;
+        text-align: right;
+        font-size: 15px;
+        padding: 4px 0;
+    }
+
+    .btn-tracking-submit {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 20px;
+        border-radius: 12px;
+        font-size: 15px;
+    }
+
+    .tracking-quick-demos {
+        gap: 6px;
+        font-size: 11.5px;
+        margin-top: 14px;
+        line-height: 1.8;
+    }
+
+    .tracking-demo-chip {
+        padding: 3px 10px;
+        font-size: 11.5px;
+    }
+
+    /* ==============================================================================
+       Knowledge Center / Guides Grid Mobile
+       ============================================================================== */
+    .knowledge-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .knowledge-card {
+        border-radius: 20px;
+    }
+
+    /* ==============================================================================
+       Comparison Section (Table to High-Conversion Cards)
+       ============================================================================== */
+    .comparison-wrapper {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        overflow-x: visible;
+        border-radius: 0;
+    }
+
+    .comparison-table,
+    .comparison-table tbody,
+    .comparison-table tr,
+    .comparison-table td {
+        display: block;
+        width: 100%;
+        min-width: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .comparison-table thead {
+        display: none;
+    }
+
+    .comparison-table tr {
+        background: var(--bg-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: 20px;
+        padding: 18px 16px;
+        margin-bottom: 16px;
+        box-shadow: var(--shadow-card);
+    }
+
+    .comparison-table td {
+        padding: 0;
+        border: none;
+    }
+
+    .comparison-table td:first-child {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--text-pure);
+        font-family: var(--font-heading);
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .comparison-table td.col-naqlx {
+        background: #EFF6FF;
+        border: 1px solid #BFDBFE;
+        border-radius: 14px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .comparison-table td.col-naqlx::before {
+        content: "منظومة NAQLX المعتمدة:";
+        display: block;
+        font-size: 12px;
+        font-weight: 800;
+        color: #1D4ED8;
+        margin-bottom: 6px;
+        font-family: var(--font-heading);
+    }
+
+    .comparison-table td.col-brokers {
+        background: #FEF2F2;
+        border: 1px solid #FECACA;
+        border-radius: 14px;
+        padding: 12px 14px;
+        width: 100%;
+    }
+
+    .comparison-table td.col-brokers::before {
+        content: "سماسرة وعمالة الشارع العشوائية:";
+        display: block;
+        font-size: 12px;
+        font-weight: 800;
+        color: #DC2626;
+        margin-bottom: 6px;
+        font-family: var(--font-heading);
+    }
+
+    .comparison-cell-flex {
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13.5px;
+        line-height: 1.6;
+    }
+
+    .comparison-cell-flex span {
+        flex: 1;
+    }
+
+    /* Floating Quick Action Suite Mobile (Smooth coordination with Sticky Bar) */
     .floating-actions {
         bottom: max(16px, env(safe-area-inset-bottom));
         left: 14px;
         gap: 12px;
         z-index: 9999;
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+    }
+
+    body.sticky-active .floating-actions,
+    .floating-actions.hidden-by-sticky {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateY(20px) scale(0.85) !important;
     }
 
     .floating-btn {
@@ -739,6 +910,11 @@
 
     .areas-grid {
         grid-template-columns: 1fr;
+    }
+
+    .calc-floors-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 
     .fleet-specs-grid {

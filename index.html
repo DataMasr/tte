@@ -1005,7 +1005,7 @@
                             <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                             <span>2. طابق التحميل والتنزيل:</span>
                         </label>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                        <div class="calc-floors-grid">
                             <div class="calc-slider-box">
                                 <div class="calc-slider-head">
                                     <span class="calc-slider-label">طابق التحميل (من):</span>
@@ -1154,8 +1154,10 @@
             <div class="tracking-panel">
                 <form id="trackingForm">
                     <div class="tracking-search-bar">
-                        <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--primary-gold);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        <input type="text" id="trackingCodeInput" class="tracking-search-input" placeholder="اكتب كود الحجز السحابي (مثال: NQ-8421)" required autocomplete="off">
+                        <div class="tracking-input-group">
+                            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--primary-gold);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="trackingCodeInput" class="tracking-search-input" placeholder="اكتب كود الحجز السحابي (مثال: NQ-8421)" required autocomplete="off">
+                        </div>
                         <button type="submit" class="btn-tracking-submit" id="trackingSubmitBtn">
                             <span>فحص وتتبع الآن</span>
                             <svg class="svg-icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -1740,7 +1742,7 @@
                 <p class="section-caption">محتوى هندسي وفني شامل موجه للعملاء، يشرح بالتفصيل جداول أمان الأوناش الهيدروليكية، بروتوكولات التغليف الفندقي، ودليل حماية المستهلك والأسعار العادلة.</p>
             </div>
 
-            <div class="knowledge-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;">
+            <div class="knowledge-grid">
                 <!-- Guide 1: Hydraulic Winch -->
                 <article class="knowledge-card" style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; transition: var(--transition);">
                     <div style="height: 190px; overflow: hidden; position: relative;">
