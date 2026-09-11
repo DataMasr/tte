@@ -176,23 +176,34 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (elRevenue) elRevenue.textContent = revenue.toLocaleString("ar-EG") + " ج.م";
     }
 
+    // تنظيف أرقام الهواتف لتفادي ثغرات الروابط
+    function sanitizePhone(phone) {
+        if (!phone) return "";
+        return String(phone).replace(/[^0-9+]/g, "");
+    }
+
     // رسم الجدول باستخدام SVG بالكامل
     function renderTable() {
         if (!ordersTableBody) return;
 
-        let filtered = allOrders.filter(o => {
-            if (currentFilter !== "all" && o.status !== currentFilter) return false;
-            if (!searchQuery) return true;
+        let filtered = allOrders;
 
+        // فلترة الحالة
+        if (currentFilter !== "all") {
+            filtered = filtered.filter(o => o.status === currentFilter);
+        }
+
+        // فلترة البحث
+        if (searchQuery) {
             const q = searchQuery.toLowerCase();
-            return (
+            filtered = filtered.filter(o =>
                 (o.booking_code && o.booking_code.toLowerCase().includes(q)) ||
                 (o.client_name && o.client_name.toLowerCase().includes(q)) ||
                 (o.phone && o.phone.includes(q)) ||
                 (o.from_area && o.from_area.toLowerCase().includes(q)) ||
                 (o.to_area && o.to_area.toLowerCase().includes(q))
             );
-        });
+        }
 
         if (filtered.length === 0) {
             ordersTableBody.innerHTML = `
@@ -216,67 +227,79 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ? new Date(order.created_at).toLocaleDateString("ar-EG", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })
                 : "الآن";
 
-            const waClientLink = `https://wa.me/2${order.phone.replace(/^0/, '')}?text=${encodeURIComponent(
-                `مرحباً أستاذ ${order.client_name}، بخصوص طلب نقل الأثاث (${order.booking_code}) من ${order.from_area} إلى ${order.to_area}. فريق NAQLX | نَقْلِكس جاهز للمعاينة والتنفيذ.`
-            )}`;
+            const safeCode = escapeHtml(order.booking_code || '');
+            const safeClientName = escapeHtml(order.client_name || '');
+            const safePhone = escapeHtml(order.phone || '');
+            const cleanPhone = sanitizePhone(order.phone || '');
+            const cleanPhoneDigits = cleanPhone.replace(/^0/, '');
+            const safeFromArea = escapeHtml(order.from_area || '');
+            const safeToArea = escapeHtml(order.to_area || '');
+            const floorFrom = parseInt(order.floor_from) || 1;
+            const floorTo = parseInt(order.floor_to) || 1;
+            const safeMoveDate = escapeHtml(order.move_date || 'غير محدد');
+            const safeStatus = escapeHtml(order.status || 'جديد');
+            const safeStatusClass = String(order.status || 'جديد').replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\-_]/g, '');
+
+            const waMsg = `مرحباً أستاذ ${order.client_name || ''}، بخصوص طلب نقل الأثاث (${order.booking_code || ''}) من ${order.from_area || ''} إلى ${order.to_area || ''}. فريق NAQLX | نَقْلِكس جاهز للمعاينة والتنفيذ.`;
+            const waClientLink = `https://wa.me/20${cleanPhoneDigits}?text=${encodeURIComponent(waMsg)}`;
 
             return `
-                <tr id="row-${order.booking_code}">
+                <tr id="row-${safeCode}">
                     <td class="td-code">
-                        <span class="booking-tag">${order.booking_code}</span>
-                        <div class="order-date-text">${dateFormatted}</div>
+                        <span class="booking-tag">${safeCode}</span>
+                        <div class="order-date-text">${escapeHtml(dateFormatted)}</div>
                     </td>
                     <td class="td-client">
-                        <span class="client-name">${escapeHtml(order.client_name)}</span>
-                        <a href="tel:${order.phone}" class="client-phone">
+                        <span class="client-name">${safeClientName}</span>
+                        <a href="tel:${cleanPhone}" class="client-phone">
                             <svg class="svg-icon" viewBox="0 0 24 24" style="width:13px; height:13px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                            <span>${order.phone}</span>
+                            <span>${safePhone}</span>
                         </a>
                     </td>
                     <td class="td-route">
                         <div class="route-info">
-                            <span>${escapeHtml(order.from_area)}</span>
+                            <span>${safeFromArea}</span>
                             <span class="route-arrow">
                                 <svg class="svg-icon" viewBox="0 0 24 24" style="width:12px; height:12px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                             </span>
-                            <span>${escapeHtml(order.to_area)}</span>
+                            <span>${safeToArea}</span>
                         </div>
                         <div class="route-floor-text">
-                            الدور: من ${order.floor_from || 1} إلى ${order.floor_to || 1}
+                            الدور: من ${floorFrom} إلى ${floorTo}
                         </div>
                     </td>
                     <td class="td-services">
                         <div class="service-badges-list">
                             ${(() => {
-                    const s = Array.isArray(order.services) ? order.services : [];
-                    const hasWinch = Boolean(order.has_winch || s.some(x => x.includes("ونش")));
-                    const hasPkg = Boolean(order.has_packaging || s.some(x => x.includes("تغليف")));
-                    const hasCarp = Boolean(order.has_carpentry || s.some(x => x.includes("فك وتركيب") && !x.includes("تكييف")));
-                    const hasAc = Boolean(order.has_ac || s.some(x => x.includes("تكييف")));
-                    const rooms = order.rooms_count || s.find(x => x.includes("غرف") || x.includes("شقة") || x.includes("فيلا") || x.includes("مكتب")) || "2 غرف";
-                    return `
+                                const s = Array.isArray(order.services) ? order.services : [];
+                                const hasWinch = Boolean(order.has_winch || s.some(x => x && x.includes("ونش")));
+                                const hasPkg = Boolean(order.has_packaging || s.some(x => x && x.includes("تغليف")));
+                                const hasCarp = Boolean(order.has_carpentry || s.some(x => x && x.includes("فك وتركيب") && !x.includes("تكييف")));
+                                const hasAc = Boolean(order.has_ac || s.some(x => x && x.includes("تكييف")));
+                                const rooms = order.rooms_count || s.find(x => x && (x.includes("غرف") || x.includes("شقة") || x.includes("فيلا") || x.includes("مكتب"))) || "2 غرف";
+                                return `
                                     <span class="badge-micro">${escapeHtml(rooms)}</span>
                                     ${hasWinch ? '<span class="badge-micro badge-winch">ونش هيدروليكي</span>' : ''}
                                     ${hasPkg ? '<span class="badge-micro">تغليف شامل</span>' : ''}
                                     ${hasCarp ? '<span class="badge-micro">فك وتركيب</span>' : ''}
                                     ${hasAc ? '<span class="badge-micro">تكييف</span>' : ''}
                                 `;
-                })()}
+                            })()}
                         </div>
                         <div class="order-move-date-text">
-                            تاريخ النقل: <strong style="color:#fff;">${order.move_date || 'غير محدد'}</strong>
+                            تاريخ النقل: <strong style="color:#fff;">${safeMoveDate}</strong>
                         </div>
                     </td>
                     <td class="td-price">
                         <div class="price-box-admin">
                             <strong class="price-val">
-                                ${(order.estimated_price || 0).toLocaleString("ar-EG")}
+                                ${(Number(order.estimated_price) || 0).toLocaleString("ar-EG")}
                             </strong>
                             <span class="price-cur">ج.م</span>
                         </div>
                     </td>
                     <td class="td-status">
-                        <select class="status-select status-${(order.status || 'جديد').replace(/\s+/g, '-')}" data-code="${order.booking_code}">
+                        <select class="status-select status-${safeStatusClass}" data-code="${safeCode}">
                             <option value="جديد" ${order.status === 'جديد' ? 'selected' : ''}>جديد</option>
                             <option value="جاري التواصل" ${order.status === 'جاري التواصل' ? 'selected' : ''}>جاري التواصل</option>
                             <option value="مؤكد" ${order.status === 'مؤكد' ? 'selected' : ''}>مؤكد</option>
@@ -286,18 +309,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </td>
                     <td class="td-actions">
                         <div class="action-btns">
-                            <a href="${waClientLink}" target="_blank" class="act-btn act-whatsapp" title="محادثة واتساب">
+                            <a href="${escapeHtml(waClientLink)}" target="_blank" rel="noopener noreferrer" class="act-btn act-whatsapp" title="محادثة واتساب">
                                 <svg class="svg-icon" viewBox="0 0 24 24" style="width:16px; height:16px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                                 <span class="act-btn-label">واتساب</span>
                             </a>
-                            <a href="tel:${order.phone}" class="act-btn act-call" title="اتصال هاتفي">
+                            <a href="tel:${cleanPhone}" class="act-btn act-call" title="اتصال هاتفي">
                                 <svg class="svg-icon" viewBox="0 0 24 24" style="width:15px; height:15px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                                 <span class="act-btn-label">اتصال</span>
                             </a>
-                            <button class="act-btn act-print" data-code="${order.booking_code}" title="طباعة أمر التشغيل">
+                            <button class="act-btn act-print" data-code="${safeCode}" title="طباعة أمر التشغيل">
                                 <svg class="svg-icon" viewBox="0 0 24 24" style="width:15px; height:15px;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                             </button>
-                            <button class="act-btn act-delete" data-code="${order.booking_code}" title="حذف الطلب">
+                            <button class="act-btn act-delete" data-code="${safeCode}" title="حذف الطلب">
                                 <svg class="svg-icon" viewBox="0 0 24 24" style="width:15px; height:15px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                             </button>
                         </div>
@@ -346,15 +369,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // طباعة وثيقة أمر التشغيل
+    // طباعة وثيقة أمر التشغيل (محمية ضد XSS)
     function printOrderVoucher(order) {
         const printWindow = window.open("", "_blank");
+        if (!printWindow) return;
+
+        const safeCode = escapeHtml(order.booking_code || '');
+        const safeName = escapeHtml(order.client_name || '');
+        const safePhone = escapeHtml(order.phone || '');
+        const safeFrom = escapeHtml(order.from_area || '');
+        const safeTo = escapeHtml(order.to_area || '');
+        const floorFrom = parseInt(order.floor_from) || 1;
+        const floorTo = parseInt(order.floor_to) || 1;
+        const safeRooms = escapeHtml(order.rooms_count || '2 غرف');
+        const safeDate = escapeHtml(order.move_date || 'غير محدد');
+        const safeNotes = escapeHtml(order.notes || 'لا توجد ملاحظات إضافية');
+        const safePrice = Number(order.estimated_price || 0).toLocaleString("ar-EG");
+
         printWindow.document.write(`
             <!DOCTYPE html>
             <html dir="rtl" lang="ar">
             <head>
                 <meta charset="utf-8">
-                <title>أمر تشغيل نقل أثاث - ${order.booking_code}</title>
+                <title>أمر تشغيل نقل أثاث - ${safeCode}</title>
                 <style>
                     body { font-family: 'Cairo', Arial, sans-serif; padding: 40px; color: #111; }
                     .header { border-bottom: 2px solid #000; padding-bottom: 16px; display: flex; justify-content: space-between; align-items: center; }
@@ -374,18 +411,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                         <div class="logo">منظومة NAQLX | نَقْلِكس اللوجستية</div>
                         <div>الخط الساخن: 01007245515 - واتساب العمليات: 01006672783</div>
                     </div>
-                    <div class="badge">أمر تشغيل رقم: ${order.booking_code}</div>
+                    <div class="badge">أمر تشغيل رقم: ${safeCode}</div>
                 </div>
 
                 <div class="section">
                     <h3>بيانات أمر النقل والعميل</h3>
                     <table class="table">
-                        <tr><th>اسم العميل</th><td>${order.client_name}</td><th>رقم الهاتف</th><td>${order.phone}</td></tr>
-                        <tr><th>موقع التحميل</th><td>${order.from_area} (الدور ${order.floor_from || 1})</td><th>موقع التنزيل</th><td>${order.to_area} (الدور ${order.floor_to || 1})</td></tr>
-                        <tr><th>حجم المنقولات</th><td>${order.rooms_count}</td><th>تاريخ التنفيذ</th><td>${order.move_date}</td></tr>
+                        <tr><th>اسم العميل</th><td>${safeName}</td><th>رقم الهاتف</th><td>${safePhone}</td></tr>
+                        <tr><th>موقع التحميل</th><td>${safeFrom} (الدور ${floorFrom})</td><th>موقع التنزيل</th><td>${safeTo} (الدور ${floorTo})</td></tr>
+                        <tr><th>حجم المنقولات</th><td>${safeRooms}</td><th>تاريخ التنفيذ</th><td>${safeDate}</td></tr>
                         <tr><th>خدمة الونش</th><td>${order.has_winch ? 'مطلوب ونش هيدروليكي' : 'بدون ونش'}</td><th>تغليف وفك</th><td>${order.has_packaging ? 'تغليف شامل ' : ''}${order.has_carpentry ? '+ فك وتركيب' : ''}</td></tr>
-                        <tr><th>الميزانية المتفق عليها</th><td colspan="3"><strong style="font-size: 17px;">${order.estimated_price || 0} ج.م</strong></td></tr>
-                        <tr><th>ملاحظات خاصة</th><td colspan="3">${order.notes || 'لا توجد ملاحظات إضافية'}</td></tr>
+                        <tr><th>الميزانية المتفق عليها</th><td colspan="3"><strong style="font-size: 17px;">${safePrice} ج.م</strong></td></tr>
+                        <tr><th>ملاحظات خاصة</th><td colspan="3">${safeNotes}</td></tr>
                     </table>
                 </div>
 

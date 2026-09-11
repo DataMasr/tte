@@ -437,29 +437,47 @@ const Na2laDB = (function () {
             return { success: true, orders: localOrders, source: "local" };
         },
 
-        // البحث عن طلب بكود الحجز للاستعلام السحابي
+        // البحث عن طلب بكود الحجز للاستعلام السحابي وتتبع الشحنة (محمي أمنياً ضد تسريب بيانات العملاء PII)
         async getOrderByCode(code) {
             if (!code) return { success: false, error: "يرجى إدخال كود الحجز" };
             const cleanCode = code.toString().trim().toUpperCase();
 
-            // 1. محاولة البحث السحابي في Supabase أولاً
+            // تصفية أمنية صارمة: إرجاع البيانات العامة فقط الخاصة بالتتبع
+            // يرجع حصراً: status, booking_code, move_date, from_area, to_area
+            // وممنوع منعاً باتاً إرجاع: client_name, phone, whatsapp, notes, estimated_price
+            function filterPublicTrackingData(order) {
+                if (!order) return null;
+                return {
+                    status: order.status || "جديد",
+                    booking_code: order.booking_code || cleanCode,
+                    move_date: order.move_date || "",
+                    from_area: order.from_area || "",
+                    to_area: order.to_area || ""
+                };
+            }
+
+            // 1. محاولة البحث السحابي في Supabase أولاً (طلب الحقول المصرح بها فقط عبر الشبكة)
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/orders?booking_code=eq.${encodeURIComponent(cleanCode)}&select=*`, {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/orders?booking_code=eq.${encodeURIComponent(cleanCode)}&select=status,booking_code,move_date,from_area,to_area`, {
                     method: "GET",
-                    headers: getHeaders(true)
+                    headers: getHeaders(false)
                 });
 
                 if (response.ok) {
                     const data = await response.json();
                     if (Array.isArray(data) && data.length > 0) {
-                        return { success: true, order: data[0], source: "supabase" };
+                        return { 
+                            success: true, 
+                            order: filterPublicTrackingData(data[0]), 
+                            source: "supabase" 
+                        };
                     }
                 }
             } catch (err) {
                 console.warn("Remote search error, checking local storage:", err);
             }
 
-            // 2. البحث في الكاش والتخزين المحلي
+            // 2. البحث في الكاش والتخزين المحلي مع تصفية الحقول الحساسة
             const localList = getLocalOrders();
             const found = localList.find(o => 
                 (o.booking_code && o.booking_code.toUpperCase() === cleanCode) ||
@@ -467,7 +485,11 @@ const Na2laDB = (function () {
             );
 
             if (found) {
-                return { success: true, order: found, source: "local" };
+                return { 
+                    success: true, 
+                    order: filterPublicTrackingData(found), 
+                    source: "local" 
+                };
             }
 
             return { success: false, error: "لم يتم العثور على طلب مسجل بهذا الكود. يرجى مراجعة الكود أو التواصل معنا." };
@@ -529,25 +551,33 @@ const Na2laDB = (function () {
                 "تاريخ النقل", "السعر التقديري (ج.م)", "الحالة", "تاريخ الطلب", "ملاحظات"
             ];
 
+            function safeCsv(val) {
+                let s = String(val || '').replace(/"/g, '""');
+                if (/^[=+\-@\t\r]/.test(s)) {
+                    s = "'" + s;
+                }
+                return `"${s}"`;
+            }
+
             const rows = orders.map(o => [
-                `"${o.booking_code || ''}"`,
-                `"${(o.client_name || '').replace(/"/g, '""')}"`,
-                `"${o.phone || ''}"`,
-                `"${o.whatsapp || ''}"`,
-                `"${(o.from_area || '').replace(/"/g, '""')}"`,
-                `"${(o.to_area || '').replace(/"/g, '""')}"`,
-                `"${o.rooms_count || ''}"`,
-                o.floor_from || 1,
-                o.floor_to || 1,
+                safeCsv(o.booking_code),
+                safeCsv(o.client_name),
+                safeCsv(o.phone),
+                safeCsv(o.whatsapp),
+                safeCsv(o.from_area),
+                safeCsv(o.to_area),
+                safeCsv(o.rooms_count),
+                parseInt(o.floor_from) || 1,
+                parseInt(o.floor_to) || 1,
                 o.has_winch ? "نعم" : "لا",
                 o.has_packaging ? "نعم" : "لا",
                 o.has_carpentry ? "نعم" : "لا",
                 o.has_ac ? "نعم" : "لا",
-                o.move_date || "",
-                o.estimated_price || 0,
-                `"${o.status || 'جديد'}"`,
-                `"${o.created_at ? new Date(o.created_at).toLocaleString('ar-EG') : ''}"`,
-                `"${(o.notes || '').replace(/"/g, '""')}"`
+                safeCsv(o.move_date),
+                Number(o.estimated_price) || 0,
+                safeCsv(o.status || 'جديد'),
+                safeCsv(o.created_at ? new Date(o.created_at).toLocaleString('ar-EG') : ''),
+                safeCsv(o.notes)
             ]);
 
             const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\r\n");

@@ -1,6 +1,13 @@
-// ==============================================================================
-// Na2la Pro - Client Application Logic (Ultra-Luxury Cyber Edition)
-// ==============================================================================
+// دالة الحماية والتعقيم ضد هجمات Cross-Site Scripting (XSS)
+function escapeHtml(text) {
+    if (text === null || text === undefined) return "";
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Core Interactive Suite (Executes Immediately)
@@ -172,10 +179,10 @@ function showSuccessModal(bookingCode, order) {
         }
 
         summaryEl.innerHTML = `
-            <p><strong>العميل:</strong> ${order.client_name}</p>
-            <p><strong>خط السير:</strong> من <span style="color:#2563EB; font-weight:700;">${order.from_area}</span> إلى <span style="color:#0284C7; font-weight:700;">${order.to_area}</span></p>
-            <p><strong>الموعد المحدد:</strong> ${order.move_date}</p>
-            <p><strong>التجهيزات المطلوبة:</strong> ${services.length ? services.join(" • ") : "نقل قياسي بدون إضافات"}</p>
+            <p><strong>العميل:</strong> ${escapeHtml(order.client_name)}</p>
+            <p><strong>خط السير:</strong> من <span style="color:#2563EB; font-weight:700;">${escapeHtml(order.from_area)}</span> إلى <span style="color:#0284C7; font-weight:700;">${escapeHtml(order.to_area)}</span></p>
+            <p><strong>الموعد المحدد:</strong> ${escapeHtml(order.move_date)}</p>
+            <p><strong>التجهيزات المطلوبة:</strong> ${services.length ? services.map(s => escapeHtml(s)).join(" • ") : "نقل قياسي بدون إضافات"}</p>
             ${priceHtml}
         `;
     }
@@ -798,20 +805,12 @@ function initOrderTracker() {
             else statusBadge.classList.add("pending");
         }
 
-        // تفاصيل الميتا
-        if (clientEl) clientEl.textContent = order.client_name || "عميل مميز";
-        if (routeEl) routeEl.textContent = `${order.from_area || "موقع التحميل"} ⬅️ ${order.to_area || "موقع التنزيل"}`;
+        // تفاصيل الميتا العامة المصرح بها فقط (حماية الخصوصية ومنع تسريب بيانات العملاء)
+        if (clientEl) clientEl.textContent = "طلب معتمد وموثق 🔒";
+        if (routeEl) routeEl.textContent = `${order.from_area || "نقطة الانطلاق"} ⬅️ ${order.to_area || "وجهة الوصول"}`;
         if (dateEl) dateEl.textContent = order.move_date || "قيد التنسيق";
-        if (roomsEl) roomsEl.textContent = order.rooms_count || (order.services && order.services[0]) || "سكن متكامل";
-
-        if (equipEl) {
-            const eqList = [];
-            if (order.has_winch) eqList.push("ونش هيدروليكي");
-            if (order.has_packaging) eqList.push("تغليف بابلز 5 طبقات");
-            if (order.has_carpentry) eqList.push("فك وتركيب نجارين");
-            if (order.has_ac) eqList.push("فني تكييف");
-            equipEl.textContent = eqList.length > 0 ? eqList.join(" • ") : "شاحنة مغلقة + طاقم فنيين";
-        }
+        if (roomsEl) roomsEl.textContent = "سكن / نقل معتمد";
+        if (equipEl) equipEl.textContent = "أسطول شاحنات مجهز بالكامل";
 
         // مراحل التنفيذ في الـ Stepper:
         // Step 1: تسجيل الطلب سحابياً
