@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* النسخة القديمة من الموقع محفوظة للمرجع فقط */
+@source not "../../_old-site";
+
+@theme {
+  --font-sans: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-alexandria), var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+
+  /* لون البراند (أزرق اللوجو) */
+  --color-brand-50: #eef5ff;
+  --color-brand-100: #d9e8ff;
+  --color-brand-200: #bcd7ff;
+  --color-brand-300: #8ebfff;
+  --color-brand-400: #599cff;
+  --color-brand-500: #3478fc;
+  --color-brand-600: #1e5bf1;
+  --color-brand-700: #1646de;
+  --color-brand-800: #1939b4;
+  --color-brand-900: #1b358d;
+  --color-brand-950: #152256;
+
+  /* كحلي الخلفيات الداكنة */
+  --color-ink-700: #1e2c47;
+  --color-ink-800: #142039;
+  --color-ink-900: #0c162b;
+  --color-ink-950: #070d1c;
+
+  --color-whatsapp: #15803d;
+  --color-whatsapp-hover: #166534;
+
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-white font-sans text-slate-700 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-brand-500/20 text-slate-900;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.55;
+  }
+}
+
+/* فتح وإغلاق ناعم للأسئلة الشائعة */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (interpolate-size: allow-keywords) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+
+    details::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      transition:
+        block-size 0.3s ease,
+        content-visibility 0.3s allow-discrete;
+    }
+
+    details[open]::details-content {
+      block-size: auto;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
