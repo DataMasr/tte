@@ -11,6 +11,23 @@ const pricing = {
   currency: "جنيه",
 };
 
+/**
+ * عرض لفترة محدودة: يظهر كرسالة عند فتح الموقع ويختفي تلقائيًا بعد endsAt،
+ * أو بعد اكتمال عدد الطلبات (العدّاد يحتاج تشغيل supabase/schema.sql).
+ * لإيقافه فورًا: show: false
+ */
+const offer = {
+  show: true,
+  /** نسبة الخصم % */
+  discount: 20,
+  /** عدد الطلبات التي تحصل على الخصم */
+  limit: 20,
+  /** الطلبات من هذا الوقت تُحسب في العرض (+03:00 = توقيت القاهرة) */
+  startsAt: "2026-09-18T00:00:00+03:00",
+  /** العرض ساري حتى نهاية 30 سبتمبر */
+  endsAt: "2026-10-01T00:00:00+03:00",
+};
+
 const price = (value: number) => value.toLocaleString("en-US");
 
 export const site = {
@@ -62,6 +79,7 @@ export const site = {
   },
 
   pricing,
+  offer,
 } as const;
 
 export const nav = [

@@ -9,6 +9,7 @@ import {
   CircleCheck,
   ClipboardList,
   Download,
+  Gift,
   Globe,
   Inbox,
   LockKeyhole,
@@ -32,6 +33,7 @@ import { buttonClasses } from "@/components/ui/button";
 import { exportOrdersCsv, printOrder } from "@/lib/admin-export";
 import { customerWhatsappHref } from "@/lib/contact";
 import { formatDate, formatDateTime, formatNumber } from "@/lib/format";
+import { offer, offerCountdown, offerLastDay, offerOrderIds, offerTitle, useOffer } from "@/lib/offer";
 import { statusStyle } from "@/lib/order-status";
 import {
   checkAdminAccess,
@@ -67,6 +69,7 @@ export function Dashboard({ email }: { email: string }) {
   const [query, setQuery] = useState("");
   const [editing, setEditing] = useState<Order | "new" | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const offerStatus = useOffer();
 
   const load = useCallback(async () => {
     try {
@@ -119,6 +122,8 @@ export function Dashboard({ email }: { email: string }) {
     }
     return { byStatus, confirmedValue };
   }, [orders]);
+
+  const offerIds = useMemo(() => offerOrderIds(orders), [orders]);
 
   const visibleOrders = useMemo(() => {
     const search = toLatinDigits(query.trim().toLowerCase());
@@ -224,6 +229,21 @@ export function Dashboard({ email }: { email: string }) {
                 className="col-span-2 lg:col-span-1"
               />
             </section>
+
+            {offerStatus.phase === "running" && state === "ready" && (
+              <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-3xl bg-amber-50 px-4 py-3 text-sm text-amber-900 ring-1 ring-amber-200 ring-inset">
+                <span className="flex items-center gap-2 font-bold">
+                  <Gift className="size-5 text-amber-600" aria-hidden="true" />
+                  {offerTitle}
+                </span>
+                <span>
+                  {offerIds.size >= offer.limit ? "اكتمل العدد" : `${offerIds.size} من ${offer.limit} طلب حتى الآن`}
+                </span>
+                <span className="text-amber-700">
+                  حتى {offerLastDay} · {offerCountdown(offerStatus.daysLeft)}
+                </span>
+              </p>
+            )}
 
             <section className="mt-5 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate-200/70 sm:p-5">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -349,6 +369,7 @@ export function Dashboard({ email }: { email: string }) {
                                 {order.booking_code}
                               </p>
                               <p className="mt-1 text-xs text-slate-500">{formatDateTime(order.created_at)}</p>
+                              {offerIds.has(order.id) && <OfferBadge className="mt-2" />}
                             </td>
                             <td className="px-4 py-4">
                               <p className="font-semibold text-slate-900">{order.client_name}</p>
@@ -400,6 +421,7 @@ export function Dashboard({ email }: { email: string }) {
                               </span>{" "}
                               • {formatDateTime(order.created_at)}
                             </p>
+                            {offerIds.has(order.id) && <OfferBadge className="mt-2" />}
                           </div>
                           <StatusSelect order={order} onChange={changeStatus} />
                         </div>
@@ -535,6 +557,18 @@ function ServiceBadges({ order }: { order: Order }) {
         </span>
       ))}
     </div>
+  );
+}
+
+/** الطلب من أول طلبات العرض (الطلبات الملغية لا تُحسب) */
+function OfferBadge({ className }: { className?: string }) {
+  return (
+    <p className={className}>
+      <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800">
+        <Gift className="size-3.5" aria-hidden="true" />
+        خصم {offer.discount}%
+      </span>
+    </p>
   );
 }
 

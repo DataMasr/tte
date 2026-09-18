@@ -9,6 +9,7 @@
 -- ماذا يفعل؟
 --   • الزوار يقدرون يسجلوا طلبات جديدة فقط (بدون قراءة أو تعديل أو حذف).
 --   • تتبع الطلب يرجّع بيانات عامة فقط (بدون اسم العميل أو رقمه).
+--   • عدّاد عرض الخصم يرجّع رقمًا فقط (عدد الطلبات منذ بداية العرض).
 --   • قراءة وتعديل وحذف الطلبات للمسؤولين المسجّلين في admin_users فقط.
 -- =============================================================================
 
@@ -149,7 +150,26 @@ revoke all on function public.track_order(text) from public;
 grant execute on function public.track_order(text) to anon, authenticated;
 
 
--- 5) تحقق سريع ------------------------------------------------------------------
+-- 5) عدّاد عرض الخصم (رقم فقط، بدون أي بيانات عملاء) ----------------------------
+-- الطلبات الملغية لا تُحسب، والرقم محدود بـ 100 حتى لا يكشف حجم الطلبات
+create or replace function public.offer_orders_count(p_since timestamptz)
+returns integer
+language sql
+stable
+security definer
+set search_path = ''
+as $$
+  select least(count(*), 100)::integer
+  from public.orders o
+  where o.created_at >= p_since
+    and o.status <> 'ملغي';
+$$;
+
+revoke all on function public.offer_orders_count(timestamptz) from public;
+grant execute on function public.offer_orders_count(timestamptz) to anon, authenticated;
+
+
+-- 6) تحقق سريع ------------------------------------------------------------------
 -- يجب أن يظهر إيميل الأدمن هنا، وإلا لن تظهر الطلبات في لوحة الإدارة:
 select u.email as admin_email
 from public.admin_users a

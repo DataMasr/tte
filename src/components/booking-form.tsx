@@ -7,6 +7,7 @@ import {
   ChevronDown,
   CircleCheckBig,
   Copy,
+  Gift,
   LoaderCircle,
   MapPin,
   Send,
@@ -20,16 +21,27 @@ import { ServiceChips } from "@/components/ui/service-chips";
 import { inputClasses } from "@/components/ui/styles";
 import { whatsappHref } from "@/lib/contact";
 import { formatDate, todayISO } from "@/lib/format";
+import {
+  offer,
+  offerEligibility,
+  offerLastDay,
+  offerRemaining,
+  offerTitle,
+  refreshOffer,
+  snoozeOffer,
+  useOffer,
+} from "@/lib/offer";
 import { createBooking, isServiceColumn, type OrderInput, type ServiceColumn } from "@/lib/orders";
 import { normalizeEgyptianMobile } from "@/lib/phone";
 import { cn } from "@/lib/utils";
 
 type Field = "clientName" | "phone" | "fromArea" | "toArea" | "moveDate";
 type Errors = Partial<Record<Field, string>>;
+type OfferMatch = ReturnType<typeof offerEligibility>;
 type Status =
   | { kind: "idle" }
   | { kind: "sending" }
-  | { kind: "sent"; code: string; input: OrderInput }
+  | { kind: "sent"; code: string; input: OrderInput; offerMatch: OfferMatch }
   | { kind: "failed"; input: OrderInput };
 
 const FIELDS: Field[] = ["clientName", "phone", "fromArea", "toArea", "moveDate"];
@@ -62,7 +74,7 @@ function readForm(data: FormData) {
   return { input, errors };
 }
 
-function whatsappSummary(input: OrderInput, code?: string) {
+function whatsappSummary(input: OrderInput, offerMatch: OfferMatch, code?: string) {
   const services = serviceOptions
     .filter((option) => input.services.includes(option.column))
     .map((option) => option.label);
@@ -70,6 +82,7 @@ function whatsappSummary(input: OrderInput, code?: string) {
   return [
     code ? "مرحبًا NA2LAX، أرسلت طلب نقل من الموقع." : "مرحبًا NA2LAX، أريد حجز نقل عفش.",
     code && `رقم الطلب: ${code}`,
+    offerMatch !== "no" && `العرض: ${offerTitle}`,
     `الاسم: ${input.clientName}`,
     `الموبايل: ${input.phone}`,
     `من: ${input.fromArea}`,
@@ -95,6 +108,7 @@ export function BookingForm({
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [errors, setErrors] = useState<Errors>({});
   const dateRef = useRef<HTMLInputElement>(null);
+  const offerMatch = offerEligibility(useOffer());
 
   // يتم ضبطه بعد التحميل لتفادي اختلاف التاريخ بين السيرفر والمتصفح
   useEffect(() => {
@@ -117,7 +131,14 @@ export function BookingForm({
 
     setStatus({ kind: "sending" });
     const result = await createBooking(input);
-    setStatus(result.ok ? { kind: "sent", code: result.code, input } : { kind: "failed", input });
+    if (!result.ok) {
+      setStatus({ kind: "failed", input });
+      return;
+    }
+    // لو كانت هناك أماكن متاحة في العرض لحظة الإرسال، فالطلب داخله
+    setStatus({ kind: "sent", code: result.code, input, offerMatch });
+    snoozeOffer({ booked: true });
+    void refreshOffer();
   }
 
   function clearError(event: React.FormEvent<HTMLFormElement>) {
@@ -132,7 +153,12 @@ export function BookingForm({
 
   if (status.kind === "sent") {
     return (
-      <BookingSuccess code={status.code} input={status.input} onReset={() => setStatus({ kind: "idle" })} />
+      <BookingSuccess
+        code={status.code}
+        input={status.input}
+        offerMatch={status.offerMatch}
+        onReset={() => setStatus({ kind: "idle" })}
+      />
     );
   }
 
@@ -140,6 +166,7 @@ export function BookingForm({
 
   return (
     <form onSubmit={handleSubmit} onInput={clearError} noValidate>
+      {offerMatch !== "no" && <OfferNote />}
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField name="clientName" label="الاسم" autoComplete="name" placeholder="اسمك بالكامل" error={errors.clientName} />
         <TextField
@@ -210,7 +237,7 @@ export function BookingForm({
         </label>
       </div>
 
-      {status.kind === "failed" && <FailedNotice input={status.input} />}
+      {status.kind === "failed" && <FailedNotice input={status.input} offerMatch={offerMatch} />}
 
       <button type="submit" disabled={sending} className={cn(buttonClasses({ size: "lg", block: true }), "mt-8")}>
         {sending ? (
@@ -269,7 +296,27 @@ function TextField({
   );
 }
 
-function FailedNotice({ input }: { input: OrderInput }) {
+function OfferNote() {
+  const status = useOffer();
+  const remaining = status.phase === "running" ? offerRemaining(status) : null;
+
+  return (
+    <p className="mb-6 flex items-start gap-3 rounded-2xl bg-amber-50 p-3.5 text-sm leading-relaxed text-amber-900 ring-1 ring-amber-200 ring-inset">
+      <Gift className="mt-0.5 size-5 shrink-0 text-amber-600" aria-hidden="true" />
+      <span>
+        <strong className="font-bold">{offerTitle}</strong> — حتى {offerLastDay}
+        {remaining !== null && (
+          <>
+            {" "}
+            (متبقٍ {remaining} من {offer.limit})
+          </>
+        )}
+      </span>
+    </p>
+  );
+}
+
+function FailedNotice({ input, offerMatch }: { input: OrderInput; offerMatch: OfferMatch }) {
   return (
     <div role="alert" className="mt-6 flex gap-3 rounded-2xl bg-amber-50 p-4 ring-1 ring-inset ring-amber-200">
       <TriangleAlert className="mt-0.5 size-5 shrink-0 text-amber-600" aria-hidden="true" />
@@ -279,7 +326,7 @@ function FailedNotice({ input }: { input: OrderInput }) {
           أرسل نفس البيانات عبر واتساب بضغطة واحدة، وسنرد عليك في أسرع وقت.
         </p>
         <a
-          href={whatsappHref(whatsappSummary(input))}
+          href={whatsappHref(whatsappSummary(input, offerMatch))}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(buttonClasses({ variant: "whatsapp", size: "sm" }), "mt-3")}
@@ -292,7 +339,17 @@ function FailedNotice({ input }: { input: OrderInput }) {
   );
 }
 
-function BookingSuccess({ code, input, onReset }: { code: string; input: OrderInput; onReset: () => void }) {
+function BookingSuccess({
+  code,
+  input,
+  offerMatch,
+  onReset,
+}: {
+  code: string;
+  input: OrderInput;
+  offerMatch: OfferMatch;
+  onReset: () => void;
+}) {
   const [copied, setCopied] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -326,6 +383,22 @@ function BookingSuccess({ code, input, onReset }: { code: string; input: OrderIn
         سنتواصل معك قريبًا على <span className="font-semibold text-slate-800">{input.phone}</span> لتأكيد الموعد.
       </p>
 
+      {offerMatch !== "no" && (
+        <p className="mx-auto mt-5 flex max-w-md items-start gap-3 rounded-2xl bg-amber-50 p-3.5 text-start text-sm leading-relaxed text-amber-900 ring-1 ring-amber-200 ring-inset">
+          <Gift className="mt-0.5 size-5 shrink-0 text-amber-600" aria-hidden="true" />
+          {offerMatch === "yes" ? (
+            <span>
+              <strong className="font-bold">طلبك ضمن أول {offer.limit} طلب</strong> وله خصم {offer.discount}% على سعر
+              النقل.
+            </span>
+          ) : (
+            <span>
+              <strong className="font-bold">{offerTitle}</strong> — سنؤكد لك الخصم عند التواصل.
+            </span>
+          )}
+        </p>
+      )}
+
       <div className="mt-6 inline-flex items-center gap-3 rounded-2xl bg-slate-50 py-2 ps-5 pe-2 ring-1 ring-inset ring-slate-200">
         <span className="text-sm text-slate-500">رقم طلبك</span>
         <span dir="ltr" className="font-mono text-lg font-bold tracking-wider text-slate-900">
@@ -343,7 +416,7 @@ function BookingSuccess({ code, input, onReset }: { code: string; input: OrderIn
 
       <div className="mt-8 grid gap-3 sm:grid-cols-2">
         <a
-          href={whatsappHref(whatsappSummary(input, code))}
+          href={whatsappHref(whatsappSummary(input, offerMatch, code))}
           target="_blank"
           rel="noopener noreferrer"
           className={buttonClasses({ variant: "whatsapp", block: true })}

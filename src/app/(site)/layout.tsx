@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/json-ld";
 import { ContactShortcuts } from "@/components/layout/contact-shortcuts";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { OfferPopup } from "@/components/offer-popup";
 import { organizationNode, websiteNode } from "@/lib/schema";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -18,6 +19,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <main id="main">{children}</main>
       <Footer />
       <ContactShortcuts />
+      <OfferPopup />
     </>
   );
 }
