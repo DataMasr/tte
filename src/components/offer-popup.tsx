@@ -9,45 +9,36 @@ import { WhatsAppIcon } from "@/components/icons";
 import { buttonClasses } from "@/components/ui/button";
 import { bookingHref, whatsappHref } from "@/lib/contact";
 import {
-  isOfferSnoozed,
   offer,
   offerCountdown,
   offerEligibility,
   offerLastDay,
   offerRemaining,
   offerWhatsappMessage,
-  snoozeOffer,
   useOffer,
   type RunningOffer,
 } from "@/lib/offer";
 import { cn } from "@/lib/utils";
 
-/** رسالة العرض عند فتح الموقع. بعد إغلاقها لا تظهر مرة أخرى لمدة يوم */
+/**
+ * رسالة العرض: تظهر في كل مرة يُفتح فيها الموقع (وبعد كل تحديث للصفحة)،
+ * ومرة واحدة فقط أثناء التنقل بين الصفحات حتى لا تقاطع الزائر
+ */
 export function OfferPopup() {
   const status = useOffer();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  // صفحة التتبع لعملاء حجزوا بالفعل
-  const available = offerEligibility(status) !== "no" && !pathname.startsWith("/track");
+  const available = offerEligibility(status) !== "no";
 
   useEffect(() => {
-    if (!available || isOfferSnoozed()) return;
+    if (!available) return;
     const timer = window.setTimeout(() => setOpen(true), 800);
     return () => window.clearTimeout(timer);
   }, [available]);
 
   if (!open || !available || status.phase !== "running") return null;
 
-  return (
-    <OfferDialog
-      status={status}
-      bookingLink={bookingHref(pathname)}
-      onClose={() => {
-        snoozeOffer();
-        setOpen(false);
-      }}
-    />
-  );
+  return <OfferDialog status={status} bookingLink={bookingHref(pathname)} onClose={() => setOpen(false)} />;
 }
 
 function OfferDialog({

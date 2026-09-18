@@ -10,8 +10,6 @@ export const offer = site.offer;
 const START = Date.parse(offer.startsAt);
 const END = Date.parse(offer.endsAt);
 const DAY = 86_400_000;
-const OFFER_ID = `${offer.startsAt}/${offer.endsAt}`;
-const STORAGE_KEY = "na2lax-offer";
 
 /** آخر يوم في العرض بتوقيت القاهرة، مثل: 30 سبتمبر */
 export const offerLastDay = new Intl.DateTimeFormat("ar-EG-u-nu-latn", {
@@ -113,29 +111,6 @@ export function useOffer() {
     () => status,
     () => CHECKING,
   );
-}
-
-/* ============ عدم إزعاج الزائر ============ */
-
-type Snooze = { offer: string; until: number };
-
-/** الرسالة لا تتكرر لمدة يوم بعد إغلاقها، ولا تظهر مرة أخرى بعد الحجز */
-export function isOfferSnoozed() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as Snooze | null;
-    return saved?.offer === OFFER_ID && saved.until > Date.now();
-  } catch {
-    return false;
-  }
-}
-
-export function snoozeOffer({ booked = false } = {}) {
-  try {
-    const snooze: Snooze = { offer: OFFER_ID, until: booked ? END : Date.now() + DAY };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(snooze));
-  } catch {
-    // التخزين غير متاح (مثل التصفح الخاص)، فقد تظهر الرسالة مرة أخرى
-  }
 }
 
 /* ============ لوحة الإدارة ============ */

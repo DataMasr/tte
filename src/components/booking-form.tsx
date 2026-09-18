@@ -28,7 +28,6 @@ import {
   offerRemaining,
   offerTitle,
   refreshOffer,
-  snoozeOffer,
   useOffer,
 } from "@/lib/offer";
 import { createBooking, isServiceColumn, type OrderInput, type ServiceColumn } from "@/lib/orders";
@@ -137,7 +136,6 @@ export function BookingForm({
     }
     // لو كانت هناك أماكن متاحة في العرض لحظة الإرسال، فالطلب داخله
     setStatus({ kind: "sent", code: result.code, input, offerMatch });
-    snoozeOffer({ booked: true });
     void refreshOffer();
   }
 
