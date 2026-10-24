@@ -134,17 +134,84 @@ export async function getWhatsAppStatus(): Promise<WhatsAppStatus> {
 }
 
 export async function connectWhatsApp(forceFresh = false) {
-  return await fetchWithFallback("/connect", {
+  const direct = await fetchWithFallback("/connect", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ forceFresh }),
   });
+
+  if (direct && direct.ok) return direct;
+
+  try {
+    const supabase = getAdminClient();
+    const { data: existing } = await supabase
+      .from("orders")
+      .select("notes")
+      .eq("booking_code", "WA_BOT_STATUS")
+      .limit(1);
+
+    if (existing && existing[0]?.notes) {
+      const parsed = JSON.parse(existing[0].notes);
+      parsed.command = forceFresh ? "forceFresh" : "connect";
+      parsed.status = "connecting";
+      await supabase
+        .from("orders")
+        .update({ notes: JSON.stringify(parsed) })
+        .eq("booking_code", "WA_BOT_STATUS");
+
+      return { ok: true, status: "connecting" };
+    }
+  } catch (err) {
+    console.error("Cloud connect fallback error:", err);
+  }
+
+  return direct || { ok: false, error: "تعذّر بدء الاتصال بالبوت" };
 }
 
 export async function disconnectWhatsApp() {
-  return await fetchWithFallback("/disconnect", {
+  const direct = await fetchWithFallback("/disconnect", {
     method: "POST",
   });
+
+  if (direct && direct.ok) return direct;
+
+  try {
+    const supabase = getAdminClient();
+    const { data: existing } = await supabase
+      .from("orders")
+      .select("notes")
+      .eq("booking_code", "WA_BOT_STATUS")
+      .limit(1);
+
+    if (existing && existing[0]?.notes) {
+      const parsed = JSON.parse(existing[0].notes);
+      parsed.command = "disconnect";
+      parsed.status = "disconnected";
+      parsed.user = null;
+      parsed.userName = null;
+      parsed.qrDataUrl = null;
+
+      const newLog: WhatsAppLog = {
+        id: `log_${Date.now()}`,
+        timestamp: new Date().toISOString(),
+        type: "system",
+        message: "تم تسجيل الخروج وفصل ربط الواتساب بنجاح",
+        status: "تم الفصل",
+      };
+      parsed.logs = [newLog, ...(parsed.logs || [])].slice(0, 30);
+
+      await supabase
+        .from("orders")
+        .update({ notes: JSON.stringify(parsed) })
+        .eq("booking_code", "WA_BOT_STATUS");
+
+      return { ok: true, status: "disconnected" };
+    }
+  } catch (err) {
+    console.error("Cloud disconnect fallback error:", err);
+  }
+
+  return direct || { ok: false, error: "تعذّر فصل البوت" };
 }
 
 /**
@@ -207,9 +274,32 @@ export async function sendOrderWhatsApp(
 }
 
 export async function repairWhatsAppSession() {
-  return await fetchWithFallback("/repair-session", {
+  const direct = await fetchWithFallback("/repair-session", {
     method: "POST",
   });
+  if (direct && direct.ok) return direct;
+
+  try {
+    const supabase = getAdminClient();
+    const { data: existing } = await supabase
+      .from("orders")
+      .select("notes")
+      .eq("booking_code", "WA_BOT_STATUS")
+      .limit(1);
+
+    if (existing && existing[0]?.notes) {
+      const parsed = JSON.parse(existing[0].notes);
+      parsed.command = "repair";
+      await supabase
+        .from("orders")
+        .update({ notes: JSON.stringify(parsed) })
+        .eq("booking_code", "WA_BOT_STATUS");
+
+      return { ok: true, message: "تم إرسال أمر إصلاح الجلسة للسيرفر بنجاح" };
+    }
+  } catch {}
+
+  return direct || { ok: false, error: "تعذّر إصلاح الجلسة" };
 }
 
 export async function sendTestWhatsApp(phone: string, message: string) {
