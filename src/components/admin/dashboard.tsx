@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Banknote,
+  Bot,
   CalendarDays,
   ChevronDown,
   CircleCheck,
@@ -52,8 +53,10 @@ import {
 } from "@/lib/orders";
 import { toLatinDigits } from "@/lib/phone";
 import { getAdminClient } from "@/lib/supabase";
+import { sendOrderWhatsApp } from "@/lib/whatsapp-client";
 import { cn } from "@/lib/utils";
 import { OrderDialog } from "./order-dialog";
+import { WhatsAppHeaderButton } from "./whatsapp-manager";
 
 type Filter = "all" | OrderStatus;
 type LoadState = "loading" | "ready" | "error" | "denied";
@@ -194,6 +197,7 @@ export function Dashboard({ email }: { email: string }) {
             <span className="hidden text-sm text-slate-400 md:inline" dir="ltr">
               {email}
             </span>
+            <WhatsAppHeaderButton />
             <Link href="/" className={buttonClasses({ variant: "glass", size: "sm" })}>
               <Globe className="size-4" aria-hidden="true" />
               <span className="max-sm:sr-only">الموقع</span>
@@ -401,7 +405,12 @@ export function Dashboard({ email }: { email: string }) {
                               <StatusSelect order={order} onChange={changeStatus} />
                             </td>
                             <td className="px-4 py-4">
-                              <OrderActions order={order} onEdit={() => setEditing(order)} onDelete={() => remove(order)} />
+                              <OrderActions
+                                order={order}
+                                onEdit={() => setEditing(order)}
+                                onDelete={() => remove(order)}
+                                onNotice={setNotice}
+                              />
                             </td>
                           </tr>
                         ))}
@@ -454,7 +463,12 @@ export function Dashboard({ email }: { email: string }) {
                           <p className="text-sm font-semibold text-slate-900">
                             <PriceText order={order} />
                           </p>
-                          <OrderActions order={order} onEdit={() => setEditing(order)} onDelete={() => remove(order)} />
+                          <OrderActions
+                            order={order}
+                            onEdit={() => setEditing(order)}
+                            onDelete={() => remove(order)}
+                            onNotice={setNotice}
+                          />
                         </div>
                       </li>
                     ))}
@@ -598,7 +612,18 @@ function InfoLine({ icon: Icon, children }: { icon: LucideIcon; children: React.
   );
 }
 
-function OrderActions({ order, onEdit, onDelete }: { order: Order; onEdit: () => void; onDelete: () => void }) {
+function OrderActions({
+  order,
+  onEdit,
+  onDelete,
+  onNotice,
+}: {
+  order: Order;
+  onEdit: () => void;
+  onDelete: () => void;
+  onNotice?: (msg: string) => void;
+}) {
+  const [sendingBot, setSendingBot] = useState(false);
   const whatsapp = customerWhatsappHref(
     order.phone,
     `مرحبًا ${order.client_name}، معك فريق ${site.name} بخصوص طلب النقل رقم ${order.booking_code} من ${order.from_area} إلى ${order.to_area}.`,
@@ -606,15 +631,45 @@ function OrderActions({ order, onEdit, onDelete }: { order: Order; onEdit: () =>
   const iconButton =
     "grid size-9 place-items-center rounded-xl text-slate-500 transition hover:bg-slate-100 hover:text-slate-900";
 
+  async function handleSendBot() {
+    setSendingBot(true);
+    try {
+      const res = await sendOrderWhatsApp(order);
+      if (res.ok) {
+        onNotice?.(`تم إرسال رسالة التأكيد عبر البوت إلى ${order.client_name} (${order.booking_code})`);
+      } else {
+        alert(res.error || "تعذّر الإرسال، تأكد من مسح الـ QR وربط البوت أولاً.");
+      }
+    } catch (e: unknown) {
+      alert("خطأ: " + (e instanceof Error ? e.message : String(e)));
+    } finally {
+      setSendingBot(false);
+    }
+  }
+
   return (
     <div className="flex items-center gap-0.5">
+      <button
+        type="button"
+        onClick={handleSendBot}
+        disabled={sendingBot}
+        aria-label="إرسال رسالة تأكيد عبر بوت الواتساب"
+        title="إرسال رسالة التأكيد الآلية للعميل عبر البوت"
+        className={cn(
+          iconButton,
+          "text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700",
+          sendingBot && "animate-pulse",
+        )}
+      >
+        <Bot className="size-4" />
+      </button>
       {whatsapp && (
         <a
           href={whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="مراسلة العميل على واتساب"
-          title="واتساب"
+          aria-label="مراسلة العميل على واتساب ويب"
+          title="محادثة واتساب مباشرة"
           className={cn(iconButton, "text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800")}
         >
           <WhatsAppIcon className="size-[18px]" />

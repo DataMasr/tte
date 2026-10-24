@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: { unoptimized: true },
+  async rewrites() {
+    return [
+      {
+        source: "/api/whatsapp/:path*",
+        destination: "http://167.235.10.203:5050/api/whatsapp/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -32,6 +32,7 @@ import {
 } from "@/lib/offer";
 import { createBooking, isServiceColumn, type OrderInput, type ServiceColumn } from "@/lib/orders";
 import { normalizeEgyptianMobile } from "@/lib/phone";
+import { notifyNewOrderInstant } from "@/lib/whatsapp-client";
 import { cn } from "@/lib/utils";
 
 type Field = "clientName" | "phone" | "fromArea" | "toArea" | "moveDate";
@@ -134,6 +135,18 @@ export function BookingForm({
       setStatus({ kind: "failed", input });
       return;
     }
+    // إرسال رسالة واتساب آلية فورية للعميل برقم طلبه
+    void notifyNewOrderInstant({
+      booking_code: result.code,
+      client_name: input.clientName,
+      phone: input.phone,
+      from_area: input.fromArea,
+      to_area: input.toArea,
+      move_date: input.moveDate,
+      services: input.services,
+      notes: input.notes,
+    });
+
     // لو كانت هناك أماكن متاحة في العرض لحظة الإرسال، فالطلب داخله
     setStatus({ kind: "sent", code: result.code, input, offerMatch });
     void refreshOffer();

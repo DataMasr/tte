@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // نسخة احتياطية من الموقع القديم
     "_old-site/**",
+    "server/**",
+    "vps-bot/**",
   ]),
 ]);
 
