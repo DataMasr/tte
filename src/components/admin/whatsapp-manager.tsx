@@ -398,16 +398,27 @@ export function WhatsAppManagerModal({
                       </div>
                     )}
 
-                    <div className="mt-4 flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => handleConnect(true)}
-                        disabled={actionLoading}
-                        className={buttonClasses({ variant: "light", size: "sm" })}
+                    <div className="mt-4 flex flex-col items-center gap-2.5 w-full">
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleConnect(true)}
+                          disabled={actionLoading}
+                          className={buttonClasses({ variant: "light", size: "sm" })}
+                        >
+                          <RefreshCw className={cn("size-4", actionLoading && "animate-spin")} />
+                          تحديث الرمز
+                        </button>
+                      </div>
+
+                      <a
+                        href="http://167.235.10.203:5050"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-blue-50 px-3 py-2 text-xs font-bold text-blue-700 ring-1 ring-blue-200 transition hover:bg-blue-100"
                       >
-                        <RefreshCw className={cn("size-4", actionLoading && "animate-spin")} />
-                        تحديث الرمز
-                      </button>
+                        🔗 فتح صفحة الـ QR المباشرة من السيرفر (167.235.10.203:5050)
+                      </a>
                     </div>
                   </div>
 
