@@ -178,6 +178,7 @@ export async function listOrders(client: SupabaseClient) {
   const { data, error } = await client
     .from(TABLE)
     .select("*")
+    .neq("booking_code", "WA_BOT_STATUS")
     .order("created_at", { ascending: false });
   if (error) throw new Error(error.message);
   return (data ?? []) as Order[];
