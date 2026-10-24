@@ -49,12 +49,14 @@ const PRIMARY_URL = "/api/whatsapp";
 const FALLBACK_URL = `${DEFAULT_BOT_URL}/api/whatsapp`;
 
 async function fetchWithFallback(endpoint: string, options?: RequestInit) {
-  const custom = getStoredBotUrl();
-  if (custom) {
+  const targetBase = getStoredBotUrl() || DEFAULT_BOT_URL;
+  if (targetBase) {
     try {
-      const res = await fetch(`${custom}/api/whatsapp${endpoint}`, options);
-      if (res.ok) return await res.json();
-    } catch {}
+      const res = await fetch(`${targetBase}/api/whatsapp${endpoint}`, options);
+      return await res.json();
+    } catch {
+      // Direct call failed
+    }
   }
 
   try {
