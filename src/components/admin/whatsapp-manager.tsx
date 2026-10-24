@@ -24,9 +24,6 @@ import {
   resetWhatsAppTemplate,
   saveWhatsAppSettings,
   sendTestWhatsApp,
-  getStoredBotUrl,
-  setStoredBotUrl,
-  DEFAULT_BOT_URL,
   type WhatsAppLog,
   type WhatsAppStatus,
 } from "@/lib/whatsapp-client";
@@ -52,7 +49,6 @@ export function WhatsAppManagerModal({
   const [template, setTemplate] = useState("");
   const [autoReply, setAutoReply] = useState(true);
   const [autoMessageNewOrders, setAutoMessageNewOrders] = useState(true);
-  const [botUrl, setBotUrl] = useState(() => (typeof window !== "undefined" ? getStoredBotUrl() : DEFAULT_BOT_URL));
   const [settingsSaved, setSettingsSaved] = useState(false);
 
   const refresh = useCallback(async () => {
@@ -147,7 +143,6 @@ export function WhatsAppManagerModal({
   async function handleSaveSettings() {
     setActionLoading(true);
     try {
-      setStoredBotUrl(botUrl);
       await saveWhatsAppSettings({
         autoReply,
         autoMessageNewOrders,
@@ -495,34 +490,6 @@ export function WhatsAppManagerModal({
                     </p>
                   </div>
                 </label>
-              </div>
-
-              {/* VPS Server URL */}
-              <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                <div className="flex items-center justify-between">
-                  <label htmlFor="bot-url" className="text-sm font-bold text-slate-900">
-                    عنوان سيرفر البوت (VPS Server URL):
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() => setBotUrl(DEFAULT_BOT_URL)}
-                    className="text-xs font-semibold text-brand-600 underline hover:text-brand-800"
-                  >
-                    استعادة الافتراضي (167.235.10.203)
-                  </button>
-                </div>
-                <input
-                  id="bot-url"
-                  type="url"
-                  value={botUrl}
-                  onChange={(e) => setBotUrl(e.target.value)}
-                  placeholder="http://167.235.10.203:5050"
-                  className="mt-2 block h-11 w-full rounded-xl border-0 bg-white px-3 font-mono text-sm text-slate-900 ring-1 ring-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                  dir="ltr"
-                />
-                <p className="mt-1.5 text-xs text-slate-500">
-                  عنوان السيرفر الذي يعمل عليه البوت (ملف <code className="rounded bg-slate-200 px-1 py-0.5">vps.bat</code>) مع المنفذ 5050.
-                </p>
               </div>
 
               {/* Template Editor */}
