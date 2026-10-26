@@ -6,7 +6,7 @@
 const pricing = {
   /** غيّر show إلى false لإخفاء الأسعار من الموقع بالكامل */
   show: true,
-  from: 15000,
+  from: 5000,
   upTo: 50000,
   currency: "جنيه",
 };
