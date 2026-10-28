@@ -26,6 +26,13 @@ const channels = [
     tone: "bg-brand-50 text-brand-600 ring-brand-100",
   },
   {
+    label: "رقم إضافي",
+    value: site.contact.phone2.display,
+    href: telHref(site.contact.phone2.tel),
+    icon: Phone,
+    tone: "bg-sky-50 text-sky-700 ring-sky-100",
+  },
+  {
     label: "خط الطوارئ",
     value: site.contact.emergency.display,
     href: telHref(site.contact.emergency.tel),

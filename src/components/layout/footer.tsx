@@ -11,6 +11,7 @@ import { telHref, whatsappHref } from "@/lib/contact";
 
 const contactLinks = [
   { icon: Phone, label: site.contact.phone.display, href: telHref() },
+  { icon: Phone, label: site.contact.phone2.display, href: telHref(site.contact.phone2.tel) },
   { icon: WhatsAppIcon, label: site.contact.whatsapp.display, href: whatsappHref(), external: true },
   { icon: Headset, label: `${site.contact.emergency.display} (طوارئ)`, href: telHref(site.contact.emergency.tel) },
   { icon: Mail, label: site.contact.email, href: `mailto:${site.contact.email}` },

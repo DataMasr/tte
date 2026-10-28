@@ -60,6 +60,13 @@ export function organizationNode(): Node {
     contactPoint: [
       {
         "@type": "ContactPoint",
+        telephone: site.contact.phone2.tel,
+        contactType: "customer service",
+        areaServed: "EG",
+        availableLanguage: ["ar"],
+      },
+      {
+        "@type": "ContactPoint",
         telephone: site.contact.phone.tel,
         contactType: "customer service",
         areaServed: "EG",
