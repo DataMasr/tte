@@ -198,6 +198,10 @@ export const servicePages: ServicePage[] = [
         a: "نغلّف الأجهزة والشاشات بخامات مناسبة، ونضع الملفات في كراتين مرقّمة حسب كل قسم لتسهيل الترتيب.",
       },
     ],
+    image: {
+      src: "/assets/office-moving.webp",
+      alt: "فريق NA2LAX ينقل ويجهّز مكاتب وشركات ومقرات إدارية باحترافية",
+    },
   },
   {
     slug: "intercity",
