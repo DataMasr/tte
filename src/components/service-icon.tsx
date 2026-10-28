@@ -1,4 +1,7 @@
-import { Building2, PackageCheck, Route, Truck, Wrench } from "lucide-react";
+// src/components/service-icon.tsx
+// typescript / react / nextjs / browser
+
+import { Building2, HandCoins, PackageCheck, Route, Truck, Warehouse, Wrench } from "lucide-react";
 import type { ServiceIconName } from "@/config/services";
 import { WinchIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
@@ -10,6 +13,8 @@ const icons = {
   assembly: Wrench,
   office: Building2,
   intercity: Route,
+  usedFurniture: HandCoins,
+  storage: Warehouse,
 };
 
 const tones = {

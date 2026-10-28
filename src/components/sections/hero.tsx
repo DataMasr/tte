@@ -80,10 +80,10 @@ export function Hero() {
                 src="/assets/hero-lift.webp"
                 alt="ونش رفع أثاث هيدروليكي يرفع قطعة أثاث مغلّفة إلى شرفة في دور مرتفع"
                 width={1024}
-                height={572}
+                height={775}
                 preload
                 sizes="(min-width: 1280px) 500px, (min-width: 1024px) 40vw, (min-width: 640px) 576px, 100vw"
-                className="aspect-[4/3] h-auto w-full object-cover object-[60%_50%] lg:aspect-[5/4]"
+                className="aspect-[4/3] h-auto w-full object-cover object-center lg:aspect-[5/4]"
               />
             </div>
             <div className="absolute -bottom-6 start-4 flex items-center gap-3 rounded-2xl bg-white p-3 pe-5 shadow-xl shadow-black/20 ring-1 ring-slate-900/5 motion-safe:animate-float sm:start-6">

@@ -15,9 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly",
       priority: 1,
-      images: ["/assets/hero-lift.webp", "/assets/fleet.webp", "/assets/packing.webp"].map((path) =>
-        absoluteUrl(path),
-      ),
+      images: [
+        "/assets/hero-lift.webp",
+        "/assets/fleet.webp",
+        "/assets/packing.webp",
+        "/assets/used-furniture.webp",
+        "/assets/storage.webp",
+      ].map((path) => absoluteUrl(path)),
     },
     { url: absoluteUrl("/services"), lastModified, changeFrequency: "monthly", priority: 0.9 },
     ...servicePages.map((service) => ({

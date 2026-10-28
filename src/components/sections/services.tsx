@@ -1,3 +1,6 @@
+// src/components/sections/services.tsx
+// typescript / react / nextjs / browser
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -16,6 +19,8 @@ export function Services() {
   const winch = bySlug("winch");
   const assembly = bySlug("assembly");
   const packing = bySlug("packing");
+  const usedFurniture = bySlug("buy-used-furniture");
+  const storage = bySlug("furniture-storage");
   const more = [bySlug("office-moving"), bySlug("intercity")];
 
   return (
@@ -23,8 +28,8 @@ export function Services() {
       <Container>
         <SectionHeading
           eyebrow="خدماتنا"
-          title="خدمات نقل العفش والأثاث"
-          description="خدمة متكاملة من الفك والتغليف حتى التركيب في مكانك الجديد."
+          title="خدمات نقل وتخزين وشراء العفش والأثاث"
+          description="خدمة متكاملة من النقل والفك والتغليف إلى التخزين الآمن وشراء العفش المستعمل بأعلى سعر."
         />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-14 lg:grid-cols-3">
@@ -60,6 +65,10 @@ export function Services() {
           </Link>
 
           <PhotoCard service={packing} className="sm:col-span-2" />
+
+          <PhotoCard service={storage} className="sm:col-span-2" />
+
+          <PhotoCard service={usedFurniture} />
         </div>
 
         <ul className="mt-4 grid gap-4 sm:mt-5 sm:grid-cols-2 sm:gap-5">

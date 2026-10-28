@@ -29,9 +29,13 @@ export function organizationNode(): Node {
       width: 512,
       height: 512,
     },
-    image: ["/assets/hero-lift.webp", "/assets/fleet.webp", "/assets/packing.webp"].map((path) =>
-      absoluteUrl(path),
-    ),
+    image: [
+      "/assets/hero-lift.webp",
+      "/assets/fleet.webp",
+      "/assets/packing.webp",
+      "/assets/used-furniture.webp",
+      "/assets/storage.webp",
+    ].map((path) => absoluteUrl(path)),
     telephone: site.contact.phone.tel,
     email: site.contact.email,
     ...(site.pricing.show && { priceRange: `EGP ${site.pricing.from.toLocaleString("en-US")}+` }),

@@ -70,9 +70,9 @@ export default async function ServicePage(props: PageProps<"/services/[slug]">) 
                 src={service.image.src}
                 alt={service.image.alt}
                 width={1024}
-                height={572}
+                height={775}
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="aspect-[4/3] h-auto w-full object-cover"
+                className="aspect-[4/3] h-auto w-full object-cover object-center"
               />
             </div>
           ) : (
