@@ -61,7 +61,7 @@ export const site = {
   contact: {
     phone: { display: "01007245515", tel: "+201007245515" },
     phone2: { display: "01002633244", tel: "+201002633244" },
-    whatsapp: { display: "01006672783", number: "201006672783" },
+    whatsapp: { display: "01002633244", number: "201002633244" },
     emergency: { display: "01113428840", tel: "+201113428840" },
     email: "info@na2lax.com",
     hours: "24 ساعة طوال أيام الأسبوع",
