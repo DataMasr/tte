@@ -36,6 +36,7 @@ export function organizationNode(): Node {
       "/assets/used-furniture.webp",
       "/assets/storage.webp",
       "/assets/office-moving.webp",
+      "/assets/assembly.webp",
     ].map((path) => absoluteUrl(path)),
     telephone: site.contact.phone.tel,
     email: site.contact.email,

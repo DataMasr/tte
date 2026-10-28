@@ -168,6 +168,10 @@ export const servicePages: ServicePage[] = [
         a: "نعم، نفك ونركّب المطابخ والستائر ضمن الخدمة، ونحدد التفاصيل أثناء المعاينة.",
       },
     ],
+    image: {
+      src: "/assets/assembly.webp",
+      alt: "فريق NA2LAX لفك وتركيب غرف النوم والمطابخ والأثاث بدقة واحترافية",
+    },
     preselect: ["has_carpentry"],
   },
   {

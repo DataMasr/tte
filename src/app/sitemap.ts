@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "/assets/used-furniture.webp",
         "/assets/storage.webp",
         "/assets/office-moving.webp",
+        "/assets/assembly.webp",
       ].map((path) => absoluteUrl(path)),
     },
     { url: absoluteUrl("/services"), lastModified, changeFrequency: "monthly", priority: 0.9 },
